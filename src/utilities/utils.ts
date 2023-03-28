@@ -9,7 +9,6 @@ export const generateConfigRandom = (): string=>{
   if(diffN === 1) difficulty = 'easy';
   if(diffN === 2) difficulty = 'medium';
   else difficulty = 'hard';
-  console.log(generateRandomInt(1, 50));
   return `${generateRandomInt(1, 50)}/${generateRandomInt(9, 32)}/${difficulty}`
   
 }

@@ -12,17 +12,10 @@ export const Playzone: React.FC = () => {
     category: category!,
     difficulty: difficulty!
   }
-  // console.log(epa);
-  
-  const {data, isSuccess, error, isLoading} = useGetQuestionQuery(epa)
-  if(error) console.log(error);
-  if(isSuccess) console.log(data)
-  
 
   return (
-    <main className='playzone'>
-      {isSuccess && <InteractiveCard body={data[0].question} />}
-      
+    <main className='playzone' style={{position: 'relative', margin: '10px', boxSizing: 'border-box'}}>
+      <InteractiveCard body={'loremn'} />
       <section className='playzone__true-sector'></section>
       <section className='playzone__false-sector'></section>
     </main>

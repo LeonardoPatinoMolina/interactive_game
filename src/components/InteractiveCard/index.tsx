@@ -16,7 +16,7 @@ interface InteractiveCardProps {
 
 const InteractiveCard: React.FC<InteractiveCardProps> = ({body}) => {
 
-  const [itemDraggable] = useDraggable();
+  const [itemDraggable] = useDraggable({aligment: 'centertop'});
 
   return (
     <div className='interactive-card' ref={itemDraggable as LegacyRef<HTMLDivElement>}>

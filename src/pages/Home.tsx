@@ -1,7 +1,11 @@
+import { LegacyRef } from "react";
 import { Link } from "react-router-dom"
+import { useDraggable } from "../hooks/useDraggable";
 import { generateConfigRandom } from "../utilities/utils";
 
 export const Home = () => {
+
+  const [itemD] = useDraggable({aligment: 'center'})
 
   return (
     <main className="home">
@@ -11,9 +15,6 @@ export const Home = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quasi laboriosam iusto a facere saepe dolor deserunt. Laudantium tempore voluptates iusto ipsam.
         </article>
         <div className="home__section__options">
-          <div 
-            className="btn btn__confirm" 
-          >Si</div>
           <div className="home__section__options--suboptions">
           <Link 
             className="btn btn__confirm" 
