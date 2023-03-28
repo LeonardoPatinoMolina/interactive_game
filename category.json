@@ -1,0 +1,124 @@
+[
+  {
+    "trivia_categories": [
+      { "id": 9, "name": "General Knowledge" },
+      { "id": 10, "name": "Entertainment: Books" },
+      { "id": 11, "name": "Entertainment: Film" },
+      { "id": 12, "name": "Entertainment: Music" },
+      { "id": 13, "name": "Entertainment: Musicals & Theatres" },
+      { "id": 14, "name": "Entertainment: Television" },
+      { "id": 15, "name": "Entertainment: Video Games" },
+      { "id": 16, "name": "Entertainment: Board Games" },
+      { "id": 17, "name": "Science & Nature" },
+      { "id": 18, "name": "Science: Computers" },
+      { "id": 19, "name": "Science: Mathematics" },
+      { "id": 20, "name": "Mythology" },
+      { "id": 21, "name": "Sports" },
+      { "id": 22, "name": "Geography" },
+      { "id": 23, "name": "History" },
+      { "id": 24, "name": "Politics" },
+      { "id": 25, "name": "Art" },
+      { "id": 26, "name": "Celebrities" },
+      { "id": 27, "name": "Animals" },
+      { "id": 28, "name": "Vehicles" },
+      { "id": 29, "name": "Entertainment: Comics" },
+      { "id": 30, "name": "Science: Gadgets" },
+      { "id": 31, "name": "Entertainment: Japanese Anime & Manga" },
+      { "id": 32, "name": "Entertainment: Cartoon & Animations" }
+    ]
+  },
+
+  {
+    "response_code": 0,
+    "results": [
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Which American family band had a 1986 top 10 hit with the song &#039;Crush On You&#039;?",
+        "correct_answer": "The Jets",
+        "incorrect_answers": ["DeBarge", "The Jacksons", "The Cover Girls"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Where does the Mac part of the name Fleetwood Mac come from?",
+        "correct_answer": "John McVie",
+        "incorrect_answers": [
+          "Christine McVie",
+          "Mac McAnally",
+          "David Tennant"
+        ]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Which famous rapper is featured in Jack &Uuml; (Skrillex and Diplo)&#039;s 2015 single called &quot;Febreze&quot;?",
+        "correct_answer": "2 Chainz",
+        "incorrect_answers": ["Kendrick Lamar", "Future", "Fatman Scoop"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "What is the name of Finnish DJ Darude&#039;s hit single released in October 1999?",
+        "correct_answer": "Sandstorm",
+        "incorrect_answers": ["Dust Devil", "Sirocco", "Khamsin"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Which artist collaborated with American DJ Dillon Francis to release the song 2016 &quot;Need You&quot;?",
+        "correct_answer": "NGHTMRE",
+        "incorrect_answers": ["LOUDPVCK", "KRNE", "DVBBS"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "hard",
+        "question": "Which Death Grips album is the only one to feature a band member?",
+        "correct_answer": "No Love Deep Web",
+        "incorrect_answers": [
+          "Bottomless Pit",
+          "The Money Store",
+          "The Powers That B"
+        ]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "hard",
+        "question": "This album, now considered to be one of the greatest of all time, was a commercial failure when it was released.",
+        "correct_answer": "The Velvet Underground and Nico",
+        "incorrect_answers": ["Abbey Road", "Led Zeppelin IV", "Pet Sounds"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Who released the 1991 album &quot;Out of Time&quot;?",
+        "correct_answer": "R.E.M.",
+        "incorrect_answers": ["U2", "Coldplay", "The Rolling Stones"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "The Rush song &quot;YYZ&quot; derives its name from the IATA aiport identification code for which city?",
+        "correct_answer": "Toronto",
+        "incorrect_answers": ["Vancouver", "Ottawa", "Calgary"]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Which genre of Hip Hop does MC Frontalot rap?",
+        "correct_answer": "Nerdcore",
+        "incorrect_answers": ["Horrorcore", "Christian", "Crunk"]
+      }
+    ]
+  }
+]

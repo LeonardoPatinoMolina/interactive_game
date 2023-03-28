@@ -1,0 +1,99 @@
+@use '../../../styles/globals' as g;
+
+.interactive-card{
+  position: relative;
+  perspective: 1000px;
+  transform: translateX(50%) translateY(80%);
+  
+  &__content{
+    box-shadow: 0 0 3px 1px #0008;
+    border-radius: .5em;
+    cursor: move;
+    font-family: g.$primaryfont;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 3px #000;
+    -webkit-text-stroke: 5px solid #000;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    min-height: 100px;
+    width: 200px;
+    transform: rotateX(0) rotateY(0);
+    pointer-events: none;
+    transition: 200ms linear transform;
+    overflow: hidden;
+    display: grid;
+    transform-style: preserve-3d;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+
+    &::after{
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: url('https://www.nsca.org/wp-content/uploads/2021/05/Question-Mark-small.jpg');
+      background-size: cover;
+      background-position: center;      
+      position: absolute;
+      isolation: isolate;
+      overflow: hidden;
+      filter: brightness(62%) blur(.7px);
+      z-index: -1;
+    }
+
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: -50%;
+      top: -50%;
+      background: linear-gradient(#ffffff33, #00000033);
+    }
+  }
+  &__cell{
+    position: absolute;
+    z-index: 1;
+    width: 10%;
+    height: 10%;
+    cursor: grab;
+
+    &:active{
+      cursor: grabbing;
+    }
+  }//end cell
+
+  @for $row from 1 to 11 {
+    @for $column from 1 to 11 {
+      //ubicacion de las celdas
+      &__cell-#{( ($row*10) + $column - 10)} {
+        top: ($row * 10%)-10%;
+        left: ($column * 10%)-10%;
+
+      }
+      //transformacion segun la celda
+      &__cell-#{( ($row*10) + $column - 10)}:hover
+        ~ &__content {
+        transform: rotateX((($row * -5)+25deg)) rotateY((-25deg+ ($column * 5)));
+        //transformacion de la peudoclase para imitar
+        //una iluminación tenue
+        &:before {
+          transform: translateY(25- (5% * $row));
+        }
+      }
+      
+      //transformacion segun la celda
+      &__cell-#{( ($row*10) + $column - 10)}:active
+        ~ &__content {
+        transform: rotateX((($row * -5)+25deg)) rotateY((-25deg+ ($column * 5)));
+        //transformacion de la peudoclase para imitar
+        //una iluminación tenue
+        &:before {
+          transform: translateY(25- (5% * $row));
+        }
+      }
+    }//end for
+  }//end for
+}
