@@ -22,7 +22,7 @@ export const Home = () => {
           >Configurar partida</Link>
           <Link 
             className="btn btn__confirm" 
-            to={`/playzone/${generateConfigRandom()}`}
+            to={`/playzone/any`}
           >Partida rapida</Link>
           </div>
         </div>

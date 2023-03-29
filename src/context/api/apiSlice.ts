@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { QuestionsAdapter } from "../../adapters/Question";
-import { GetQuestionsUrlI } from "../../services/endpoints";
+import { GetQuestionsUrlI, GetAnyQuestionsUrlI } from "../../services/endpoints";
 
 export interface QuestionData {
     category: string,
@@ -17,7 +17,7 @@ export const questionApi = createApi({
   endpoints: (builder)=>({
     getQuestion: builder.query<any, GetQuestionsUrlI>({
       query: ({amount, category, difficulty}) => {
-        return `?amount=${amount}&category=${category}&difficulty=${difficulty}&type=boolean&encode=base64`
+        return `?amount=${amount}&category=${category}&difficulty=${difficulty}&type=boolean&encode=base64`;
       },
       transformResponse: (response: any)=>{
         if(response.results.length === 0) throw new Error('no hay resultados')
@@ -25,10 +25,20 @@ export const questionApi = createApi({
         return decodeData
       }
     }),
+    getAnyQuestions: builder.query<any, GetAnyQuestionsUrlI>({
+      query: ({amount}) =>{
+        return `?amount=${amount}&encode=base64`;
+      },
+      transformResponse: (response: any)=>{
+        if(response.results.length === 0) throw new Error('no hay resultados')
+        const decodeData = new QuestionsAdapter(response).questions;
+        return decodeData
+      }
+    })
   })
 })
 
-export const { useGetQuestionQuery } = questionApi;
+export const { useGetQuestionQuery, useGetAnyQuestionsQuery } = questionApi;
 
 
 // `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=boolean`

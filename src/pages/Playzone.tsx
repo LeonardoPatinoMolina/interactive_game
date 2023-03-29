@@ -1,21 +1,19 @@
-import { InteractiveCard } from '../components/InteractiveCard'
-import { useParams } from 'react-router-dom'
-import { useGetQuestionQuery } from '../context/api/apiSlice';
+import { useParams } from 'react-router-dom';
+import { InteractiveCard } from '../components/InteractiveCard';
+import { useQuestion } from '../hooks/useQuestion';
 
 
 export const Playzone: React.FC = () => {
 
-  const {amount, category, difficulty} = useParams();
-  
-  const epa = {
-    amount: amount!,
-    category: category!,
-    difficulty: difficulty!
-  }
-
+  const {type} = useParams()
+  const { isSuccess, generator, question} = useQuestion({type: type! as "custom" | "any"})
+  const clickHandle = ()=>{
+      generator?.next()
+    }
   return (
-    <main className='playzone' style={{position: 'relative', margin: '10px', boxSizing: 'border-box'}}>
-      <InteractiveCard body={'loremn'} />
+    <main className='playzone'>
+      {isSuccess && <InteractiveCard body={question?.question ?? 'lorem'} />}
+      <button onClick={clickHandle}>next</button>
       <section className='playzone__true-sector'></section>
       <section className='playzone__false-sector'></section>
     </main>

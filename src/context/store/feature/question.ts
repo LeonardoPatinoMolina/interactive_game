@@ -1,30 +1,33 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Question } from '../../../adapters/Question';
+import { GetAnyQuestionsUrlI, GetQuestionsUrlI } from '../../../services/endpoints';
+import { generateRandomInt } from '../../../utilities/utils';
 
 export type QuestionState = {
-  body: string;
-  difficulty: string;
-  category: number;
-  correct_answer: boolean;
-  wrong_answer: boolean;
+  config: GetQuestionsUrlI | GetAnyQuestionsUrlI;
 }
 
 const initialState: QuestionState = {
-  body: '',
-  category: 9,
-  difficulty: 'easy',
-  correct_answer: false,
-  wrong_answer: true
+  config: {
+    amount: '10',
+    category: '9',
+    difficulty: 'easy'
+  }
 }
 
 export const questionSlice = createSlice({
   name: 'question',
   initialState,
   reducers: {
-    setQuestion: (state, action: PayloadAction<QuestionState>)=>{
-      state = action.payload
-      return state
+    setConfigQuestion: (state: QuestionState, action: PayloadAction<QuestionState>) => {
+      state.config = action.payload.config
+      return state;
+    },
+    setAnyConfigQuestion: (state: QuestionState, action: PayloadAction<QuestionState>) => {
+      state.config = {amount: `${generateRandomInt(1,50)}`}
+      return state;
     }
   }
 });
-export const {setQuestion} = questionSlice.actions;
+export const { setConfigQuestion, setAnyConfigQuestion} = questionSlice.actions;
 export default questionSlice.reducer
