@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { questionApi } from '../api/apiSlice';
 import questionReducer from './feature/question';
 

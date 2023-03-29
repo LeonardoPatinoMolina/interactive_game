@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Aligment, Vector } from "../types/globals";
 
 type useDraggableArgs = {
   position?: Vector;
-  aligment?: "center" | "centerleft" | "centerright"| "centertop" |"centerbottom" | "topleft" | "topright" | "bottomleft" | "bottomright";
+  aligment?: Aligment
 }
-type Vector = { x: number; y: number };
+type useDraggableReturns = [
+  item: React.MutableRefObject<HTMLElement | undefined>,
+  changePosition: (position: Aligment)=>void
+]
 type DeviceType = "mouse" | "touch";
 
 const EVENTS: Record<DeviceType, { down: string; move: string; up: string }> =
@@ -21,7 +25,7 @@ const EVENTS: Record<DeviceType, { down: string; move: string; up: string }> =
   },
 };
 
-export const useDraggable = (args: useDraggableArgs): React.MutableRefObject<HTMLElement | undefined>[] => {
+export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   
   //item que será retornado comarreglo para referenciar el item que
   //requiera ser draggable
@@ -128,9 +132,15 @@ export const useDraggable = (args: useDraggableArgs): React.MutableRefObject<HTM
     setIsMove(() => false);
   }
 
-  return [ itemDraggable ];
+  //función encargada de cambiar la ubicacion del item desde afuera por
+  //alineamiento
+  function changePosition(position: Aligment){
+    const pos = geInitialState({aligment: position}, itemDraggable);
+    translateItem(pos.x, pos.y,itemDraggable?.current!);
+    currentPosition.current = {x: pos.x, y: pos.y}
+  }
 
-
+  return [ itemDraggable, changePosition];
 }; //end hook
 
 

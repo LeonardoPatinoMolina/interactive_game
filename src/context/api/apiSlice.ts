@@ -27,7 +27,7 @@ export const questionApi = createApi({
     }),
     getAnyQuestions: builder.query<any, GetAnyQuestionsUrlI>({
       query: ({amount}) =>{
-        return `?amount=${amount}&encode=base64`;
+        return `?amount=${amount}&type=boolean&encode=base64`;
       },
       transformResponse: (response: any)=>{
         if(response.results.length === 0) throw new Error('no hay resultados')

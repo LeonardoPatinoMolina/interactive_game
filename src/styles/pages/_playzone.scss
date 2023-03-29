@@ -1,0 +1,85 @@
+@use '../util/' as u;
+@use '../globals/' as g;
+
+.playzone{
+  background-color: #f1f2f3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 70px auto;
+  width: 100vw;
+  height: 100vh;
+  
+  @include u.breakpoint-down('small'){
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  &__stats{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    background-color: red;
+    @include g.mix-flex-aligment(unset);
+
+    &__btn{
+      z-index: 2;
+    }
+  }
+
+  &__true-sector{
+    background: linear-gradient(#9fe6c5,#97ffcb);
+    position: relative;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    
+    // &:hover{
+    //   background: linear-gradient(
+    //     darken(#9fe6c5, 29%),
+    //     darken(#97ffcb, 29%));
+    // }
+    &::after{
+      content: "Verdadero";
+      @include g.mix-flex-aligment(center, center);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #0004;
+      font-size: 2rem;
+    }
+  }
+  &__false-sector{
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+    background: linear-gradient(#e6b09f,#ffc697);
+    position: relative;
+
+    // &:hover{
+    //   background: linear-gradient(
+    //     darken(#e6b09f, 24%),
+    //   darken(#ffc697, 24%));
+    // }
+    &::after{
+      content: "Falso";
+      @include g.mix-flex-aligment(center, center);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      color: #0004;
+      font-size: 2rem;
+    }
+  }
+  &__btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 2;
+  }
+  &confirm{
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 2;
+  }
+}

@@ -3,6 +3,7 @@
 .interactive-card{
   position: relative;
   perspective: 1000px;
+  z-index: 12;
   
 
   &__content{

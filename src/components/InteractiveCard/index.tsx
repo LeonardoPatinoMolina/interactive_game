@@ -1,5 +1,7 @@
-import React, { LegacyRef } from 'react';
+import React, { LegacyRef, useEffect } from 'react';
 import { useDraggable } from '../../hooks/useDraggable';
+import { Aligment } from '../../types/globals';
+import { MyEmitter } from '../../utilities/emitter';
 import './style/interectivecard.scss';
 
 interface DivMakerProps {
@@ -11,12 +13,28 @@ const DivMaker = ({amount}: DivMakerProps) => {
 }
 
 interface InteractiveCardProps {
-  body: string
+  body: string,
+  aligment: Aligment;
+  positionMutator?: MyEmitter
 }
 
-const InteractiveCard: React.FC<InteractiveCardProps> = ({body}) => {
+const InteractiveCard: React.FC<InteractiveCardProps> = ({body, aligment, positionMutator}) => {
 
-  const [itemDraggable] = useDraggable({aligment: 'centertop'});
+  const [itemDraggable, changePosition] = useDraggable({aligment});
+  useEffect(()=>{
+    if(positionMutator){
+      positionMutator.on('muteposition',(e)=>{
+        changePosition(e.detail)
+      });
+    }
+    return ()=>{
+      if(positionMutator){
+        positionMutator.off('muteposition',(e)=>{
+          changePosition(e.detail)
+        });
+      }
+    }
+  }, [])
 
   return (
     <div className='interactive-card' ref={itemDraggable as LegacyRef<HTMLDivElement>}>
