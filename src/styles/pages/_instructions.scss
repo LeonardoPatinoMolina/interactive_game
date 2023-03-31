@@ -1,0 +1,79 @@
+@use '../globals/' as g;
+@use '../util/' as u;
+
+.instructions{
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  @include g.mix-flex-aligment(unset);
+  flex-direction: column;
+  background: g.$gradient-primary;
+  color: #0009;
+  text-shadow: 0 0 6px #0006;
+
+  &__title{
+    font-family: g.$primaryfont;
+  }
+  &__paragraph{
+    width: 90%;
+    text-align: center;
+    
+    @include u.breakpoint('medium'){
+      width: 60%;
+    } 
+
+    & em{
+      font-weight: bold;
+    }
+  }
+  @for $i from 1 to 4{
+    &__grafic#{$i}, &__grafic#{$i}{
+      opacity: .5;
+      margin: .9rem 0;
+    }
+    &__grafic#{$i}.small{
+      @include u.breakpoint('medium'){
+        display: none;
+      } 
+    }
+    &__grafic#{$i}.big{
+      @include u.breakpoint-down('small'){
+        display: none;
+      } 
+    }
+  }
+
+  &__btn{
+    margin: 2rem 0;
+    @include g.mix-flex-aligment(space-evenly);
+    color: #0008;
+    gap: 5px;
+    backdrop-filter: blur(3px) saturate(150%) brightness(98%);
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 
+      0 0 20px 0 #fff6,
+      0 20px 10px 0 #32325d40;
+    text-shadow:0 0 6px #0006;
+    border-radius: 10px;
+    transition: all .2s;
+    padding: .7rem;
+    
+    &:hover{
+      transform: translateY(6px);
+      background-color: darken(#f4ffe360, 10%);
+      box-shadow: 
+        0 0 20px 0 #fff6,
+        0 10px 10px 0 #32325d40;
+    }
+
+    @include u.breakpoint('medium'){
+      padding: .7rem;
+      font-size: 1.3rem;
+    } 
+
+    &>*{
+      filter: drop-shadow(0 0 6px #0006);
+    }
+  }//end btn
+}

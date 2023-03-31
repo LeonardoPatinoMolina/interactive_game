@@ -3,11 +3,12 @@ import { Aligment, Vector } from "../types/globals";
 
 type useDraggableArgs = {
   position?: Vector;
-  aligment?: Aligment
+  aligment?: Aligment;
 }
 type useDraggableReturns = [
   item: React.MutableRefObject<HTMLElement | undefined>,
-  changePosition: (position: Aligment)=>void
+  changePosition: (position: Aligment)=>void,
+  currentPosition: Vector
 ]
 type DeviceType = "mouse" | "touch";
 
@@ -57,7 +58,7 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
     translateItem(p.x, p.y, itemDraggable.current);
     currentPosition.current = {x: p.x, y: p.y}
     itemDraggable.current.style.position = 'absolute'
-  },[]);
+  },[itemDraggable.current]);
 
   //controlamos todos los eventListeners de interes
   useEffect(() => {
@@ -91,7 +92,7 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
         itemDraggable.current.removeEventListener("mouseleave", stopMove);
       }
       
-  }, [isMove]);
+  }, [isMove, itemDraggable.current]);
 
   function downHandler(e: any): void {
     e.preventDefault();
@@ -125,7 +126,6 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   } //end movehandler
 
   function stopMove(): void {
-    
     setInitialPosition(()=>{
       return {x: currentPosition.current?.x!, y: currentPosition.current?.y!}
     })
@@ -140,7 +140,7 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
     currentPosition.current = {x: pos.x, y: pos.y}
   }
 
-  return [ itemDraggable, changePosition];
+  return [ itemDraggable, changePosition, currentPosition.current!];
 }; //end hook
 
 
@@ -168,12 +168,12 @@ function geInitialState(
   else{
     const itemWidth = item.current?.offsetWidth;
     const itemHeight = item.current?.offsetHeight;
-    
+    const headerOffset = 35;
     switch (args.aligment) {
       case 'center':
         return {
           x: (window.innerWidth - itemWidth!) / 2, 
-          y: (window.innerHeight - itemHeight!) / 2
+          y: ((window.innerHeight - itemHeight!) / 2) + headerOffset
         };
         
       case 'centerbottom':
@@ -184,27 +184,27 @@ function geInitialState(
       case 'centerleft':
         return {
           x: 0, 
-          y: (window.innerHeight - itemHeight!) / 2
+          y: ((window.innerHeight - itemHeight!) / 2) + headerOffset
         }
       case 'centerright':
         return {
           x: window.innerWidth - itemWidth!, 
-          y: (window.innerHeight - itemHeight!) / 2
+          y: ((window.innerHeight - itemHeight!) / 2) + headerOffset
         }
       case 'centertop':
         return {
           x: (window.innerWidth - itemWidth!) / 2, 
-          y: 0
+          y: headerOffset
         }
       case 'topleft':
         return {
           x: 0, 
-          y: 0
+          y: headerOffset
         }
       case 'topright':
         return {
           x: (window.innerWidth - itemWidth!), 
-          y: 0
+          y: headerOffset
         }
       case 'bottomleft':
         return {

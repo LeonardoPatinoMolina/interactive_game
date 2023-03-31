@@ -11,7 +11,7 @@
   
   @include u.breakpoint-down('small'){
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 70px auto auto;
   }
 
   &__stats{
@@ -19,6 +19,10 @@
     grid-row: 1/2;
     background-color: red;
     @include g.mix-flex-aligment(unset);
+    
+    @include u.breakpoint-down('small'){
+      background-color: blue;
+    }
 
     &__btn{
       z-index: 2;
@@ -31,6 +35,10 @@
     grid-column: 1/2;
     grid-row: 2/3;
     
+    @include u.breakpoint-down('small'){
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
     // &:hover{
     //   background: linear-gradient(
     //     darken(#9fe6c5, 29%),
@@ -50,9 +58,13 @@
   &__false-sector{
     grid-column: 2/3;
     grid-row: 2/3;
-
     background: linear-gradient(#e6b09f,#ffc697);
     position: relative;
+
+    @include u.breakpoint-down('small'){
+      grid-column: 1/2;
+      grid-row: 3/4;
+    }
 
     // &:hover{
     //   background: linear-gradient(

@@ -12,3 +12,9 @@ export const generateConfigRandom = (): string=>{
   return `${generateRandomInt(1, 50)}/${generateRandomInt(9, 32)}/${difficulty}`
   
 }
+
+export const DIFFICULTY_ES = {
+  easy: "Fácil",
+  medium: "Media",
+  hard: "Difícil"
+}

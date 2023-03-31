@@ -14,30 +14,13 @@ const DivMaker = ({amount}: DivMakerProps) => {
 
 interface InteractiveCardProps {
   body: string,
-  aligment: Aligment;
-  positionMutator?: MyEmitter
+  dragRef: React.MutableRefObject<HTMLElement | undefined>,
 }
 
-const InteractiveCard: React.FC<InteractiveCardProps> = ({body, aligment, positionMutator}) => {
-
-  const [itemDraggable, changePosition] = useDraggable({aligment});
-  useEffect(()=>{
-    if(positionMutator){
-      positionMutator.on('muteposition',(e)=>{
-        changePosition(e.detail)
-      });
-    }
-    return ()=>{
-      if(positionMutator){
-        positionMutator.off('muteposition',(e)=>{
-          changePosition(e.detail)
-        });
-      }
-    }
-  }, [])
+const InteractiveCard: React.FC<InteractiveCardProps> = ({body, dragRef}) => {
 
   return (
-    <div className='interactive-card' ref={itemDraggable as LegacyRef<HTMLDivElement>}>
+    <div className='interactive-card' ref={dragRef as LegacyRef<HTMLDivElement>}>
       <DivMaker amount={100} />
       <div className='interactive-card__content'>
         {body}

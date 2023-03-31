@@ -1,32 +1,51 @@
-import { LegacyRef } from "react";
 import { Link } from "react-router-dom"
-import { useDraggable } from "../hooks/useDraggable";
-import { generateConfigRandom } from "../utilities/utils";
+import { AiFillSetting } from "react-icons/ai"
+import { BsFastForwardFill } from "react-icons/bs"
+import { RiGuideFill } from "react-icons/ri"
+import { Footer } from "../components/Footer";
+
 
 export const Home = () => {
 
-  const [itemD] = useDraggable({aligment: 'center'})
-
   return (
-    <main className="home">
-      <h1 className="home__title">¿Sí o No?</h1>
+    <section className="home">
+      <header className="home__header">
+        <h1 className="home__header__title">
+          ¿V<span className="home__header__title--span">ERDADERO</span>-F<span className="home__header__title--span">ALSO</span>?
+        </h1>
+        <div className="home__header__logo open">
+          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>O</div>)}
+        </div>
+        <div className="home__header__logo close">
+          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>X</div>)}
+        </div>
+      </header>
       <section className="home__section">
         <article className="home__section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quasi laboriosam iusto a facere saepe dolor deserunt. Laudantium tempore voluptates iusto ipsam.
+          Bienvenido a mi pequeño juego de <em>verdadero</em> o <em>falso</em>, puedes jugar algo aleatorio o puedes configurar tu propia partida, <em>¡buena suerte!</em>
         </article>
-        <div className="home__section__options">
-          <div className="home__section__options--suboptions">
+        <nav className="home__section__options">
           <Link 
-            className="btn btn__confirm" 
+            className="btn_noumorfus" 
+            to={'/instructions'}
+          >Instrucciones
+            <RiGuideFill size={20} />
+          </Link >
+          <Link 
+            className="btn_noumorfus" 
             to={'/configplay'}
-          >Configurar partida</Link>
+          >Configurar partida
+          <AiFillSetting size={20} />
+          </Link>
           <Link 
-            className="btn btn__confirm" 
+            className="btn_noumorfus" 
             to={`/playzone/any`}
-          >Partida rapida</Link>
-          </div>
-        </div>
+          >Partida rapida
+            <BsFastForwardFill size={20} />
+          </Link>
+        </nav>
       </section>
-    </main>
+      <Footer />
+    </section>
   )
 }

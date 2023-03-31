@@ -1,0 +1,40 @@
+{
+  "responses": {
+    "goodOnes": [
+      "Bien jugado",
+      "Eres muy inteligente",
+      "Increible partida",
+      "Wow...",
+      "A eso le llamo ganar",
+      "Genio",
+      "Esta fue la buena",
+      "Asombroso",
+      "Alguien sabe demasiado",
+      "Más despacio cerebrito"
+    ],
+    "middOnes": [
+      "Algo regular",
+      "Algo es algo",
+      "Nada mal",
+      "Pudo ser mejor",
+      "Algo trabajado he",
+      "Buen intento",
+      "Mejorando, mejorando",
+      "Más o menos",
+      "Uff, a raz",
+      "Se ve bien"
+    ],
+    "badOnes": [
+      "Mala suerte",
+      "Hay que estudiar más",
+      "Un poco bajo",
+      "Algo descepcionante",
+      "Falta trabajar en ello",
+      "No fue el mejor",
+      "Esta vez no se pudo",
+      "Mmmm... no",
+      "Seguro estabas practicando... ¿no?",
+      "Necesitas mejorar"
+    ]
+}
+}

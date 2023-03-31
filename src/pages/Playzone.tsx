@@ -1,34 +1,65 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { LegacyRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { InteractiveCard } from '../components/InteractiveCard';
+import { useChoice } from '../hooks/useChoice';
+import { useDraggable } from '../hooks/useDraggable';
 import { useQuestion } from '../hooks/useQuestion';
-import { Aligment } from '../types/globals';
-import { MyEmitter } from '../utilities/emitter';
-import { useNavigate } from 'react-router-dom';
 
+type progressState = {
+  goods: number,
+  bads: number,
+}
 
 export const Playzone: React.FC = () => {
 
-  const {type} = useParams()
   const navigate = useNavigate()
-  const [mutator] = useState<MyEmitter>(new MyEmitter());
-  const { isSuccess, generator, question} = useQuestion({type: type! as "custom" | "any"})
+  const [progress, setProgress] = useState<progressState>({bads: 0, goods: 0})
+  const {type} = useParams()
+  const { isSuccess, generator, question, isError, allQuestions} = useQuestion({type: type! as "custom" | "any"})
+  
+  const [itemDraggable, changePosition, currentP] = useDraggable({
+    aligment: 'center', 
+  });
+
+  const {check, refChoiceFalse, refChoiceTrue} = useChoice({
+    target: itemDraggable?.current!, 
+    positionTarget: currentP
+  });
 
   const clickHandle = ()=>{
       generator?.next()
-      mutator.emit<Aligment>('muteposition', 'center')
+      changePosition('center')
+      console.log(check());
+      setProgress({
+        bads: 0,
+        goods: 2
+      })
+      if(`${check()}` === question?.correct_answer){
+        setProgress({...progress, goods: progress.goods + 1})
+      }else{
+        setProgress({...progress, goods: progress.bads + 1})
+      }
     };
 
     const endHandle= ()=>{
-      navigate(-1);
+      navigate(`../gameover/${progress.goods}/${progress.bads}`);
+      // navigate(`../gameover/1/${allQuestions.length}`);
     }
+
   return (
-    <main className='playzone'>
-      {isSuccess && <InteractiveCard body={question?.question ?? 'lorem'} aligment={'center'} positionMutator={mutator} />}
-      <section className='playzone__stats'>
+    <section className='playzone'>
+      {/* {<InteractiveCard 
+        dragRef={itemDraggable} 
+        body={ 'lorem'} 
+      />} */}
+      {isSuccess && <InteractiveCard 
+        dragRef={itemDraggable} 
+        body={question?.question ?? 'lorem'} 
+      />}
+      <nav className='playzone__stats'>
         <div className='playzone__stats__status'>
-          <p>aciertos</p>
-          <p>Fallas</p>
+          <p>Aciertos: {progress.goods}</p>
+          <p>Fallas: {progress.bads}</p>
         </div>
         <button 
           className='playzone__stats__btn'
@@ -42,9 +73,9 @@ export const Playzone: React.FC = () => {
           className='playzone__stats__btn'
           onClick={endHandle}
         >Fin</button>
-      </section>
-      <section className='playzone__true-sector'></section>
-      <section className='playzone__false-sector'></section>
-    </main>
+      </nav>
+      <section ref={refChoiceTrue as LegacyRef<HTMLElement>} className='playzone__true-sector'></section>
+      <section ref={refChoiceFalse as LegacyRef<HTMLElement>} className='playzone__false-sector'></section>
+    </section>
   )
 }
