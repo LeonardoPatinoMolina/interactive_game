@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { questionApi } from '../api/apiSlice';
+import { apiQuestion } from '../api/apiQuestionSlice';
+import { apiVerifyConfig } from '../api/apiVerifyCofigSlice';
 import questionReducer from './feature/question';
 
 export const store = configureStore({
   reducer: {
-    [questionApi.reducerPath]: questionApi.reducer,
+    [apiQuestion.reducerPath]: apiQuestion.reducer,
+    [apiVerifyConfig.reducerPath]: apiVerifyConfig.reducer,
     question: questionReducer,
   },
   middleware: (getDefaultMiddleware)=>
-    getDefaultMiddleware().concat(questionApi.middleware)
+    getDefaultMiddleware().concat(
+      apiQuestion.middleware, 
+      apiVerifyConfig.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>

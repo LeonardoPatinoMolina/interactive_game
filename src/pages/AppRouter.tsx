@@ -11,7 +11,7 @@ const AppRouter = () => {
         <Route path='/' element={<Home />} />
         <Route path='/instructions' element={<Instructions />} />
         <Route path='/configplay' element={<ConfigPlay />} />
-        <Route path='/gameover/:good/:bad' element={<GameOver />} />
+        <Route path='/gameover/:good/:bad/:all' element={<GameOver />} />
         <Route path='/playzone/:type' element={<Playzone />} />
       </Routes>
   )

@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Question } from '../../../adapters/Question';
-import { GetAnyQuestionsUrlI, GetQuestionsUrlI } from '../../../services/endpoints';
 import { generateRandomInt } from '../../../utilities/utils';
+import { ApiQuestionArgs } from '../../api/apiQuestionSlice';
 
 export type QuestionState = {
-  config: GetQuestionsUrlI | GetAnyQuestionsUrlI;
+  config: ApiQuestionArgs | string;
 }
 
 const initialState: QuestionState = {
   config: {
-    amount: '10',
-    category: '9',
+    limit: '1',
+    category: 'general_knowledge',
     difficulty: 'easy'
   }
 }
@@ -24,7 +23,7 @@ export const questionSlice = createSlice({
       return state;
     },
     setAnyConfigQuestion: (state: QuestionState, action: PayloadAction<QuestionState>) => {
-      state.config = {amount: `${generateRandomInt(1,50)}`}
+      state.config = `${generateRandomInt(1,20)}`
       return state;
     }
   }

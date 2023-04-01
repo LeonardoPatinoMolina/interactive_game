@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Question } from "../adapters/Question";
 import {
+  ApiQuestionArgs,
   useGetAnyQuestionsQuery,
   useGetQuestionQuery,
-} from "../context/api/apiSlice";
+} from "../context/api/apiQuestionSlice";
 import { useAppSelector } from "../context/reduxHooks";
-import { GetAnyQuestionsUrlI, GetQuestionsUrlI } from "../services/endpoints";
+import { generateRandomInt } from "../utilities/utils";
 
 type useQuestionArgs = {
   type: "any" | "custom";
-  params?: GetQuestionsUrlI | GetAnyQuestionsUrlI;
+  params?: ApiQuestionArgs | string;
 };
 
 type useQuestionReturns = {
@@ -19,11 +20,19 @@ type useQuestionReturns = {
   allQuestions: Question[] | undefined
   question: Question | undefined;
   generator: Generator | undefined;
+  options: {
+    one: string , 
+    two: string
+  }
 }
 
 export const useQuestion: any = (args: useQuestionArgs): useQuestionReturns => {
   const { config } = useAppSelector((state) => state.question);
   const [generator, setGenerator] = useState<Generator>();
+  const [options, setOptions] = useState<{one: string, two: string}>({
+    one: '',
+    two: ''
+  });
   const [question, setQuestion] = useState<Question>();
 
   const FETCH = {
@@ -35,6 +44,20 @@ export const useQuestion: any = (args: useQuestionArgs): useQuestionReturns => {
 
   function* nextQ() {
     for (const q of data) {
+      setOptions(()=>{
+        if(generateRandomInt(1,2) === 1){
+          return {
+            one: q.correctAnswer,
+            two: q.incorrectAnswers[generateRandomInt(0,q.incorrectAnswers.length - 1)]
+          }
+        }else{
+          return {
+            two: q.correctAnswer,
+            one: q.incorrectAnswers[generateRandomInt(0,q.incorrectAnswers.length - 1)]
+          }
+    
+        }
+      });
       yield setQuestion(q);
     }
   }
@@ -47,5 +70,13 @@ export const useQuestion: any = (args: useQuestionArgs): useQuestionReturns => {
     }
   }, [isSuccess]);
 
-  return { isSuccess, isError, isLoading, allQuestions: data, question, generator };
+
+  return { 
+    isSuccess, 
+    isError, 
+    isLoading, 
+    allQuestions: data, 
+    question, 
+    options,
+    generator };
 };

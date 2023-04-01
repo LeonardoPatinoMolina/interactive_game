@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsFillCaretLeftFill, BsPlusCircleFill } from "react-icons/bs";
+import { BsFillCaretLeftFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { categories } from "../assets/categories.json";
 import { Footer } from "../components/Footer";
@@ -7,30 +7,21 @@ import { Modal } from "../components/Modal";
 import { useAppDispatch } from "../context/reduxHooks";
 import { setConfigQuestion } from "../context/store/feature/question";
 import { useModal } from "../hooks/useModal";
-import { GetQuestionsUrlI } from "../services/endpoints";
 import { DIFFICULTY_ES } from "../utilities/utils";
+import { ApiQuestionArgs } from "../context/api/apiQuestionSlice";
 
 interface ConfigPLayProps {}
-const initialFormState: GetQuestionsUrlI = {
-  amount: "1",
-  category: "9",
-  difficulty: "medium",
-};
 
 const ConfigPlay: React.FC<ConfigPLayProps> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [form, setForm] = useState<GetQuestionsUrlI>(initialFormState);
-  const modalCategory = useModal({
-    loot: {
-      isOpen: false,
-    },
+  const [form, setForm] = useState<ApiQuestionArgs>({
+    limit: "1",
+    category: "general_knowledge",
+    difficulty: "easy",
   });
-  const modalDifficulty = useModal({
-    loot: {
-      isOpen: false,
-    },
-  });
+  const modalCategory = useModal({ loot: { isOpen: false } });
+  const modalDifficulty = useModal({ loot: { isOpen: false } });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,28 +29,24 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
     navigate("/playzone/custom");
   }
 
-  const handleElection = async ({currentTarget}: React.MouseEvent<HTMLElement>) => {
+  const handleElection = async ({
+    currentTarget,
+  }: React.MouseEvent<HTMLElement>) => {
     const name = currentTarget.dataset.name;
-    console.log('e');
-    
-    let choice: string;
-    if(name === 'category'){
+    let choice: string | undefined = undefined;
+    if (name === "category") {
       choice = await modalCategory.open();
-    }else{
+    } else if (name === "difficulty"){
       choice = await modalDifficulty.open();
     }
-    setForm((prev) => ({
-      ...prev,
-      [name as string]: choice,
-    }));
+    if(choice){
+      setForm((prev) => ({ ...prev, [name as string]: choice }));
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name as string]: value,
-    }));
+    setForm((prev) => ({ ...prev, [name as string]: value }));
   };
 
   return (
@@ -75,9 +62,9 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
         confirmM={modalDifficulty.close}
         loot={modalDifficulty.loot}
         options={[
-          { choice: "easy", content: "fácil" },
-          { choice: "medium", content: "media" },
-          { choice: "hard", content: "difícil" },
+          { choice: "easy", content: "Fácil" },
+          { choice: "medium", content: "Media" },
+          { choice: "hard", content: "Difícil" },
         ]}
       />
       <section className="configplay">
@@ -90,29 +77,29 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
               onClick={handleElection}
               data-name="category"
             >
-              {categories.find((c) => c.id === parseInt(form.category))?.name}
+              {categories.find((c) => c.id === form.category)?.name}
             </div>
           </label>
           <label className="configplay__form__label" htmlFor="">
-            Cantidad de preguntas (min: 1 - max: 50)
+            Cantidad de preguntas (min: 1 - max: 20)
             <input
               min={1}
-              max={50}
+              max={20}
               className="configplay__form__amount"
               type="number"
-              name="amount"
-              value={form.amount}
+              name="limit"
+              value={form.limit}
               onChange={handleChange}
             />
           </label>
           <label className="configplay__form__label">
             Dificultad
-            <div 
+            <div
               className="configplay__form__difficulty btn_noumorfus"
-              onClick={(e)=>handleElection(e)}
+              onClick={(e) => handleElection(e)}
               data-name={"difficulty"}
             >
-              {DIFFICULTY_ES[form.difficulty as "hard" | "easy" | "medium"]}
+              {DIFFICULTY_ES[form.difficulty as "hard" | "easy" | "medium" | "null"]}
             </div>
           </label>
           <div className="configplay__form__bottom">
@@ -135,4 +122,3 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
 };
 
 export { ConfigPlay };
-

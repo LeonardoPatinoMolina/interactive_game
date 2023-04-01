@@ -11,7 +11,7 @@ export const Home = () => {
     <section className="home">
       <header className="home__header">
         <h1 className="home__header__title">
-          ¿V<span className="home__header__title--span">ERDADERO</span>-F<span className="home__header__title--span">ALSO</span>?
+          ¿V<span className="home__header__title--span">ERDE</span>-R<span className="home__header__title--span">OJO</span>?
         </h1>
         <div className="home__header__logo open">
           {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>O</div>)}
@@ -22,7 +22,7 @@ export const Home = () => {
       </header>
       <section className="home__section">
         <article className="home__section__description">
-          Bienvenido a mi pequeño juego de <em>verdadero</em> o <em>falso</em>, puedes jugar algo aleatorio o puedes configurar tu propia partida, <em>¡buena suerte!</em>
+          Bienvenido a mi pequeño juego de <em>preguntas</em> y <em>respuestas</em>, puedes jugar algo rapido y aleatorio o puedes configurar tu propia partida, <em>¡buena suerte!</em>
         </article>
         <nav className="home__section__options">
           <Link 

@@ -17,7 +17,6 @@
   &__stats{
     grid-column: 1/3;
     grid-row: 1/2;
-    background-color: red;
     @include g.mix-flex-aligment(unset);
     
     @include u.breakpoint-down('small'){
@@ -29,7 +28,7 @@
     }
   }
 
-  &__true-sector{
+  &__one-sector{
     background: linear-gradient(#9fe6c5,#97ffcb);
     position: relative;
     grid-column: 1/2;
@@ -39,23 +38,23 @@
       grid-column: 1/2;
       grid-row: 2/3;
     }
-    // &:hover{
-    //   background: linear-gradient(
-    //     darken(#9fe6c5, 29%),
-    //     darken(#97ffcb, 29%));
-    // }
-    &::after{
-      content: "Verdadero";
-      @include g.mix-flex-aligment(center, center);
-      position: absolute;
-      width: 100%;
-      height: 100%;
+
+    &>span{
       font-weight: bold;
-      color: #0004;
-      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      color: #0007;
+      text-shadow:0 0 10px #0004;
+      font-size: 1.4rem;
+      @include u.breakpoint-down('small'){
+        font-size: .9rem;
+      }
     }
-  }
-  &__false-sector{
+  }//end one sector
+
+  &__two-sector{
     grid-column: 2/3;
     grid-row: 2/3;
     background: linear-gradient(#e6b09f,#ffc697);
@@ -66,28 +65,128 @@
       grid-row: 3/4;
     }
 
-    // &:hover{
-    //   background: linear-gradient(
-    //     darken(#e6b09f, 24%),
-    //   darken(#ffc697, 24%));
-    // }
-    &::after{
-      content: "Falso";
-      @include g.mix-flex-aligment(center, center);
-      position: absolute;
-      width: 100%;
-      height: 100%;
+    &>span{
       font-weight: bold;
-      color: #0004;
-      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      color: #0007;
+      text-shadow:0 0 10px #0004;
+      font-size: 1.4rem;
+      @include u.breakpoint-down('small'){
+        font-size: .9rem;
+      }
     }
-  }
-  &__btn{
-    top: 0;
-    left: 0;
-    position: absolute;
-    z-index: 2;
-  }
+  }//end two sector
+  &__stats{
+    @include g.mix-flex-aligment(space-between);
+    background: #f1f2f3;
+    font-family: g.$font;
+
+    &__status{
+      width: 100px;
+      height: 100%;
+      background-color: #222;
+      padding: 10px;
+      @include g.mix-flex-aligment(center);
+      
+      @include u.breakpoint('medium'){
+        width: 300px;
+      }
+      &__list{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #111;
+        @include g.mix-flex-aligment(space-evenly);
+        
+        &__item{
+          color: #fff;
+          font-weight: bold;
+          font-size: 1.2rem;
+          
+          @include u.breakpoint-down('small'){
+            font-size: .7rem;
+            &>span{
+              display: none;
+            }
+          }
+          
+          &:nth-child(1){
+            color: #5eff5e;
+            text-shadow: 0 0 10px #5eff5e80;
+          }
+          &:nth-child(2){
+            color: #ff5e5e;
+            text-shadow: 0 0 10px #ff5e5e80;
+          }
+          &:nth-child(3){
+            color: #5ec4ff;
+            text-shadow: 0 0 10px #5ec4ff80;
+          }
+        }//end item
+      }//end list
+    }//end status
+
+    &__nav{
+      flex-grow: 1;
+      background-color: #222;
+      height: 100%;
+      padding: 10px;
+      @include g.mix-flex-aligment(space-evenly);
+
+      &__actions{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #111;
+        gap: .5rem;
+        @include g.mix-flex-aligment(space-evenly);
+        margin: 5px;
+
+        &__btn{
+          font-size: 1rem;
+          background-color: transparent;
+          border-radius: 10px;
+          box-shadow: 5px 5px 50px 0 #0004;
+          font-family: g.$font;
+          user-select: none;
+          cursor: pointer;
+          text-shadow:0 0 6px #0006;
+          color: #0008;
+          border-radius: 10px;
+          padding: .7rem;
+          font-weight: bold;
+          background-color: #222;
+          color: #fff;
+          transition: background-color .3s;
+          
+          @include u.breakpoint-down('small'){
+            font-size: .7rem;
+          }
+          &:hover{
+            background: linear-gradient(#333, #444);
+          }
+          
+          &:nth-child(1){
+            flex-grow: 48;
+            margin-left: 5px;
+          }
+          &:nth-child(2){
+            flex-grow: 48;
+          }
+          &:nth-child(3){
+            flex-grow: 4;
+            background-color: #ff2347;
+            margin-right: 5px;
+          }
+          
+        }//end btn
+      }//end actions
+    }//end nav
+  }//end stats
+
   &confirm{
     top: 0;
     left: 0;

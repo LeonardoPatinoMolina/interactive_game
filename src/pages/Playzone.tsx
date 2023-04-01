@@ -1,4 +1,4 @@
-import { LegacyRef, useState } from 'react';
+import { LegacyRef, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InteractiveCard } from '../components/InteractiveCard';
 import { useChoice } from '../hooks/useChoice';
@@ -15,67 +15,90 @@ export const Playzone: React.FC = () => {
   const navigate = useNavigate()
   const [progress, setProgress] = useState<progressState>({bads: 0, goods: 0})
   const {type} = useParams()
-  const { isSuccess, generator, question, isError, allQuestions} = useQuestion({type: type! as "custom" | "any"})
+  const { 
+    isSuccess,
+    isLoading, 
+    generator, 
+    question, 
+    isError, 
+    allQuestions,
+    options  
+  } = useQuestion({
+      type: type! as "custom" | "any",
+    });
   
   const [itemDraggable, changePosition, currentP] = useDraggable({
     aligment: 'center', 
   });
 
-  const {check, refChoiceFalse, refChoiceTrue} = useChoice({
+  const {check, refChoiceTwo, refChoiceOne} = useChoice({
     target: itemDraggable?.current!, 
     positionTarget: currentP
   });
+  const endHandle= ()=>{
+    navigate(`../gameover/${progress.goods}/${progress.bads}/${allQuestions?.length}`);
+  };
 
   const clickHandle = ()=>{
-      generator?.next()
-      changePosition('center')
-      console.log(check());
-      setProgress({
-        bads: 0,
-        goods: 2
-      })
-      if(`${check()}` === question?.correct_answer){
-        setProgress({...progress, goods: progress.goods + 1})
+      generator?.next();
+      changePosition('center');
+      if(`${check()}` === question?.correctAnswer){
+        setProgress((prev1)=>({...prev1, goods: prev1.goods + 1}))
       }else{
-        setProgress({...progress, goods: progress.bads + 1})
+        setProgress((prev2)=>({...prev2, bads: prev2.bads + 1}))
       }
     };
-
-    const endHandle= ()=>{
-      navigate(`../gameover/${progress.goods}/${progress.bads}`);
-      // navigate(`../gameover/1/${allQuestions.length}`);
-    }
+    
+  const defeatHandle = ()=>{
+    setProgress((prev3)=>({...prev3, bads: prev3.bads + 1}))
+  }
+  useEffect(()=>{
+    if(allQuestions?.length - (progress.bads + progress.goods) === 0) endHandle();
+  },[progress])
 
   return (
     <section className='playzone'>
-      {/* {<InteractiveCard 
-        dragRef={itemDraggable} 
-        body={ 'lorem'} 
-      />} */}
-      {isSuccess && <InteractiveCard 
+      {(!isLoading && isSuccess) && <InteractiveCard 
         dragRef={itemDraggable} 
         body={question?.question ?? 'lorem'} 
       />}
-      <nav className='playzone__stats'>
+      <header className='playzone__stats'>
         <div className='playzone__stats__status'>
-          <p>Aciertos: {progress.goods}</p>
-          <p>Fallas: {progress.bads}</p>
+          <ul className='playzone__stats__status__list'>
+            <li className='playzone__stats__status__list__item'>{progress.goods}<span className='none'> : PB</span></li>
+            <li className='playzone__stats__status__list__item'>{progress.bads}<span className='none'> :PM</span></li>
+            <li className='playzone__stats__status__list__item'>{
+              isSuccess && allQuestions?.length - (progress.bads + progress.goods)
+            }/{isSuccess ? allQuestions.length: 0}<span className='none'> </span></li>
+          </ul>
         </div>
-        <button 
-          className='playzone__stats__btn'
-          onClick={clickHandle}
-          >Comprobar</button>
-        <button 
-          className='playzone__stats__btn'
-          onClick={clickHandle}
-        >Me rindo</button>
-        <button 
-          className='playzone__stats__btn'
-          onClick={endHandle}
-        >Fin</button>
-      </nav>
-      <section ref={refChoiceTrue as LegacyRef<HTMLElement>} className='playzone__true-sector'></section>
-      <section ref={refChoiceFalse as LegacyRef<HTMLElement>} className='playzone__false-sector'></section>
+        <nav className='playzone__stats__nav'>
+        <div className='playzone__stats__nav__actions'>
+          <button 
+            className='playzone__stats__nav__actions__btn'
+            onClick={clickHandle}
+            >Confirmar</button>
+          <button 
+            className='playzone__stats__nav__actions__btn'
+            onClick={defeatHandle}
+          >Me rindo</button>
+          <button 
+            className='playzone__stats__nav__actions__btn'
+            onClick={endHandle}
+          >X</button>
+        </div>
+        </nav>
+      </header>
+      <section ref={refChoiceOne as LegacyRef<HTMLElement>} className='playzone__one-sector'>
+        <span>
+          {(!isLoading && isSuccess) ? options.one : ""}
+        </span>
+      </section>
+      <section ref={refChoiceTwo as LegacyRef<HTMLElement>} className='playzone__two-sector'>
+        <span>
+          {(!isLoading && isSuccess) ? options.two : ""}
+        </span>
+      </section>
     </section>
   )
 }

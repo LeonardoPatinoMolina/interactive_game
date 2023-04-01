@@ -16,5 +16,6 @@ export const generateConfigRandom = (): string=>{
 export const DIFFICULTY_ES = {
   easy: "Fácil",
   medium: "Media",
-  hard: "Difícil"
+  hard: "Difícil",
+  "null": "Estandar",
 }

@@ -1,24 +1,26 @@
 export type Question = {
+    id: string;
     type: string;
     category: string;
     difficulty: string;
     question: string;
-    correct_answer: string;
-    incorrect_answers: string[];
+    correctAnswer: string;
+    incorrectAnswers: string[];
 }
 
 export class QuestionsAdapter{
   public readonly questions: Question[];
 
   constructor(data: any){
-    this.questions = data.results.map((q: any)=>{
+    this.questions = data.map((q: any)=>{
       const quest = {
-        type: this.decodeText(q.type),
-        category: this.decodeText(q.category),
-        difficulty: this.decodeText(q.difficulty),
-        question: this.decodeText(q.question),
-        correct_answer: this.decodeText(q.correct_answer),
-        incorrect_answers: q.incorrect_answers.map((ans: string)=>this.decodeText(ans)),
+        id: q.id,
+        type: q.type,
+        category: q.category,
+        difficulty: q.difficulty,
+        question: q.question,
+        correctAnswer: q.correctAnswer,
+        incorrectAnswers: q.incorrectAnswers.map((ans: string)=>ans),
      }
       return quest;
     })
@@ -26,7 +28,6 @@ export class QuestionsAdapter{
 
   private decodeText(text: string){
     const decoT = atob(text);
-    // const newText = decoT.replace(/\\\\/g, '');
     const newText = decoT.replace(/\\(.)/g, '$1');
     return newText;
   }

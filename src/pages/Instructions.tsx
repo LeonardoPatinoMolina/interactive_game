@@ -11,47 +11,50 @@ const Instructions = () => {
         <BsFillCaretLeftFill />
         Volver a inicio
       </Link>
-      <p className='instructions__paragraph'>La reglas son muy sensillas, tendrás una zona de juego similar a la siguiente:</p>
-      <div className='instructions__grafic1 big'>
+      <p className='instructions__paragraph'>La reglas son muy sensillas, tendrás en la que aparecerá flotando una targeta con la cual podrás interacuar. Puedes arrastrarla de un lugar a otro manteniendo el cursor o tu dedo sobre ella:</p>
+      <div className="instructions__grafic1">
         <svg width={200} height={150}>
-          <rect x={0} y={0} width={200} height={150} fill='transparent' strokeWidth={5} stroke="#000" />
+          <rect x={0} rx={10} ry={10} y={0} width={200} height={150} fill='#fff6' strokeWidth={5} stroke="#000" />
+          <text x={35} fontWeight="bold" fontSize={25} y={60} width={200} height={65} fill='#000'>¿Pregunta?</text>
+        </svg>
+      </div>
+      <p className='instructions__paragraph'>Esta tarjeta contendrá una pregunta, podrás ver las posibles respuestas divididas por dos zonas, una de color <em>rojo</em> y otra de color <em>verde</em></p>
+      
+      <div className='instructions__grafic2 big'>
+        <svg width={200} height={150}>
           <rect x={0} y={0} width={200} height={20} fill='transparent' strokeWidth={5} stroke="#000" />
-          <rect x={0} y={20} width={100} height={150} fill='transparent' strokeWidth={5} stroke="#000" />
-          <text x={10} y={85} width={200} height={65} fill='#000'>verdadero</text>
-          <text x={130} y={85} width={200} height={65} fill='#000'>falso</text>
+          <rect x={100} y={20} width={100} height={130} fill='#45ffa2' strokeWidth={5} stroke="#000" />
+          <rect x={0} y={20} width={100} height={130} fill='#ff7e57' strokeWidth={5} stroke="#000" />
+          <text x={15} y={85} width={200} height={65} fill='#000'>respuesta</text>
+          <text x={120} y={85} width={200} height={65} fill='#000'>respuesta</text>
         </svg>
       </div>
-      <div className='instructions__grafic1 small'>
+      <div className='instructions__grafic2 small'>
         <svg width={200} height={150}>
-          <rect x={0} y={0} width={200} height={150} fill='transparent' strokeWidth={5} stroke="#000" />
           <rect x={0} y={0} width={200} height={20} fill='transparent' strokeWidth={5} stroke="#000" />
-          <rect x={0} y={20} width={200} height={65} fill='transparent' strokeWidth={5} stroke="#000" />
-          <text x={70} y={55} width={200} height={65} fill='#000'>verdadero</text>
-          <text x={84} y={120} width={200} height={65} fill='#000'>falso</text>
+          <rect x={0} y={20} width={200} height={130} fill='#45ffa2' strokeWidth={5} stroke="#000" />
+          <rect x={0} y={20} width={200} height={65} fill='#ff7e57' strokeWidth={5} stroke="#000" />
+          <text x={70} y={55} width={200} height={65} fill='#000'>respuesta</text>
+          <text x={70} y={120} width={200} height={65} fill='#000'>respuesta</text>
         </svg>
       </div>
-      <p className='instructions__paragraph'>En ella aparecerá flotando una targeta con la cual podrás interacuar. Puedes arrastrarla de un lugar a otro manteniendo el cursor o tu dedo sobre ella:</p>
-      <div className="instructions__grafic2">
-        <svg width={200} height={150}>
-          <rect x={0} rx={10} ry={10} y={0} width={200} height={150} fill='transparent' strokeWidth={5} stroke="#000" />
-          <text x={84} fontWeight="bold" fontSize={50} y={100} width={200} height={65} fill='#000'>?</text>
-        </svg>
-      </div>
-      <p className='instructions__paragraph'>Esta tarjeta contendrá una afirmación, tú deberás juzgar si es <em>verdadera</em> o <em>falsa</em>, para ello tendrás una barra en la parte superior:</p>
-      <div className='instructions__grafic3'>
-      <svg width={250} height={30}>
-          <rect x={0} y={0} width={250} height={30} fill='transparent' strokeWidth={5} stroke="#000" />
-          <rect x={0} y={0} width={40} height={30} fill='transparent' strokeWidth={2} stroke="#000" />
-          <rect x={0} y={0} width={130} height={30} fill='transparent' strokeWidth={2} stroke="#000" />
-          <rect x={0} y={0} width={220} height={30} fill='transparent' strokeWidth={2} stroke="#000" />
-          {/* <text x={70} y={55} width={200} height={65} fill='#000'>verdadero</text>
-          <text x={84} y={120} width={200} height={65} fill='#000'>falso</text> */}
-        </svg>
-      </div>
-      <p className='instructions__paragraph'>pero antes debes saber que, para elegir una opcion entre verdadero o falso, necesitas arrastrar la tarjeta hasta el área que corresponda a <em>verdadero</em> o que corresponda <em>falso</em>, lo notarás recien la veas :).</p>
+      
+      <p className='instructions__paragraph'>puedes elegir uan de ellas arrastrando la tarjeta hasta el área que le corresponda.</p>
       
       <p className='instructions__paragraph'>Luego que estes seguro que la tarjeta está sobre la zona, confirmas tu elección con la opción: <em>confirmar</em></p>
+      <div className='instructions__grafic3'>
+      <svg width={200} height={30}>
+          <rect rx={10} ry={10} x={0} y={0} width={200} height={30} fill='transparent' strokeWidth={5} stroke="#000" />
+          <text x={65} y={20} fontWeight="bold" fontSize={15} width={200} height={65} fill='#000'>Confirmar</text>
+        </svg>
+      </div>
       <p className='instructions__paragraph'>Si por desgracia te ves vencido por el reto puedes elegir rendirte con la opción: <em>me rindo</em>.</p>
+      <div className='instructions__grafic4'>
+      <svg width={200} height={30}>
+          <rect rx={10} ry={10} x={0} y={0} width={200} height={30} fill='transparent' strokeWidth={5} stroke="#000" />
+          <text x={65} y={20} fontWeight="bold" fontSize={15} width={200} height={65} fill='#000'>Me rindo</text>
+        </svg>
+      </div>
 
       <p className='instructions__paragraph'>Si decides afrontar el reto y tu elección resulta ser la correcta, obtendrás un <em>punto bueno</em>, si resulta estar icorrecta obtendrás un <em>punto malo</em>, siempre que te rindas te ganarás un punto malo <em>:(</em></p>
       <div>

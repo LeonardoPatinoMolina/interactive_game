@@ -56,8 +56,9 @@ export const useModal = (initialConfig: useModalArgs): useModalReturns => {
     //resolvemos la promesa disparando el evento 'abort' e inyetamos como 
     //parametro (reason) la elección del ususario
     setLoot({...loot, isOpen: false});//cerramos el modal
-    if(!event.currentTarget.dataset.choice) return;
-    const choice = event.currentTarget.dataset.choice;
+    let choice;
+    if(!event.currentTarget.dataset.choice) choice = undefined;
+    else choice = event.currentTarget.dataset.choice;
     controller.emit<any>('modal-action',choice);
   }
   //la responsabilidad de implementar la función showM está a manos del compoentne donde se 

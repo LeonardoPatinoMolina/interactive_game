@@ -3,21 +3,21 @@ import { Vector } from "../types/globals";
 
 type useChoiceArgs = {
   target: HTMLElement;
-  positionTarget: Vector
+  positionTarget: Vector;
 };
 type useChoiceReturns = {
-  check: () => boolean | undefined;
-  refChoiceTrue: React.MutableRefObject<HTMLElement | undefined>;
-  refChoiceFalse: React.MutableRefObject<HTMLElement | undefined>;
+  check: () => string | undefined;
+  refChoiceOne: React.MutableRefObject<HTMLElement | undefined>;
+  refChoiceTwo: React.MutableRefObject<HTMLElement | undefined>;
 };
 
-export const useChoice = ({ target, positionTarget }: useChoiceArgs): useChoiceReturns => {
-  const contentTrueRef = useRef<HTMLElement>();
-  const contentFalseRef = useRef<HTMLElement>();
+export const useChoice = ({ target, positionTarget}: useChoiceArgs): useChoiceReturns => {
+  const contentOneRef = useRef<HTMLElement>();
+  const contentTwoRef = useRef<HTMLElement>();
 
-  const checkChoice = (): boolean | undefined => {
+  const checkChoice = (): string | undefined => {
     if(!target) return;
-    if(!contentTrueRef.current || !contentFalseRef.current) return;
+    if(!contentOneRef.current || !contentTwoRef.current) return;
     /**
      * optenemos el centro del item target,
      * esto para asegurarnos de la confirmación de la
@@ -31,31 +31,31 @@ export const useChoice = ({ target, positionTarget }: useChoiceArgs): useChoiceR
       x: positionTarget.x + dimTarget.x / 2,
       y: positionTarget.y + dimTarget.y / 2,
     };
-    const rectTrue = contentTrueRef.current.getBoundingClientRect();
-    const rectFalse = contentFalseRef.current.getBoundingClientRect();
+    const rectOne = contentOneRef.current.getBoundingClientRect();
+    const rectTwo = contentTwoRef.current.getBoundingClientRect();
     let choice = undefined;
     if (
-      centerOftarget.x > rectTrue?.left! &&
-      centerOftarget.x < rectTrue?.right! &&
-      centerOftarget.y < rectTrue?.bottom! &&
-      centerOftarget.y > rectTrue?.top!
+      centerOftarget.x > rectOne?.left! &&
+      centerOftarget.x < rectOne?.right! &&
+      centerOftarget.y < rectOne?.bottom! &&
+      centerOftarget.y > rectOne?.top!
     ) {
-      choice = true;
+      choice = contentOneRef.current?.firstElementChild?.innerHTML;
     }
     if (
-      centerOftarget.x > rectFalse?.left! &&
-      centerOftarget.x < rectFalse?.right! &&
-      centerOftarget.y < rectFalse?.bottom! &&
-      centerOftarget.y > rectFalse?.top!
+      centerOftarget.x > rectTwo?.left! &&
+      centerOftarget.x < rectTwo?.right! &&
+      centerOftarget.y < rectTwo?.bottom! &&
+      centerOftarget.y > rectTwo?.top!
     ) {
-      choice = false;
+      choice = contentTwoRef.current?.firstElementChild?.innerHTML;
     }
     return choice;
   }; //end checkChoice
 
   return {
     check: checkChoice,
-    refChoiceTrue: contentTrueRef,
-    refChoiceFalse: contentFalseRef,
+    refChoiceOne: contentOneRef,
+    refChoiceTwo: contentTwoRef,
   };
 };

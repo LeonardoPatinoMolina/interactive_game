@@ -28,11 +28,11 @@ export const Footer: React.FC = () => {
           </span>
           </li>
         <li className='footer__list__item'>
-          <a href="https://github.com/LeoCHAD" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/LeonardoPatinoMolina" target="_blank" rel="noopener noreferrer">
           <BsGithub 
             size={25} 
             className='footer__list__item__icon' 
-          />leoCHAD
+          />LeonardoPatinoMolina
           </a>
         </li>
         <li className='footer__list__item'>

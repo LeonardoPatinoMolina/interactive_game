@@ -24,9 +24,10 @@
 
     & em{
       font-weight: bold;
+      font-style: normal;
     }
   }
-  @for $i from 1 to 4{
+  @for $i from 1 to 5{
     &__grafic#{$i}, &__grafic#{$i}{
       opacity: .5;
       margin: .9rem 0;

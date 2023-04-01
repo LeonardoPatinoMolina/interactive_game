@@ -1,0 +1,140 @@
+[
+  {
+    "category": "Science",
+    "id": "624334cdcfaae40c12961468",
+    "correctAnswer": "A Jenny",
+    "incorrectAnswers": ["A Cow", "A Sow", "A Hembra"],
+    "question": "A female mule is known as what?",
+    "tags": ["names", "animals", "science"],
+    "type": "Multiple Choice",
+    "difficulty": "medium",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Arts & Literature",
+    "id": "622a1c367cc59eab6f95015f",
+    "correctAnswer": "F. Scott Fitzgerald",
+    "incorrectAnswers": ["Ray Bradbury", "Joseph Heller", "Harper Lee"],
+    "question": "Who wrote \"The Great Gatsby\"?",
+    "tags": ["arts_and_literature"],
+    "type": "Multiple Choice",
+    "difficulty": "medium",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Music",
+    "id": "625064cce12f6dec240bdfce",
+    "correctAnswer": "Jane Child",
+    "incorrectAnswers": ["Lou Bega", "Big Country", "Jeannie C. Riley"],
+    "question": "Who had a hit in 1990 with Don't Wanna Fall in Love?",
+    "tags": ["songs", "one_hit_wonders", "music"],
+    "type": "Multiple Choice",
+    "difficulty": "hard",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "History",
+    "id": "622a1c3c7cc59eab6f95180b",
+    "correctAnswer": "Michael Crichton",
+    "incorrectAnswers": ["Steven Spielberg", "Stephen Chbosky", "David Lynch"],
+    "question": "Which best selling American writer wrote and directed the sci-fi film Westworld?",
+    "tags": ["film", "science_fiction", "history"],
+    "type": "Multiple Choice",
+    "difficulty": "hard",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Science",
+    "id": "623388c50161109f922aacaa",
+    "correctAnswer": "Europium ",
+    "incorrectAnswers": ["Uranium", "Eugelium", "Iron"],
+    "question": "Which Metallic Element Has The Symbol EU",
+    "tags": ["science"],
+    "type": "Multiple Choice",
+    "difficulty": "medium",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Arts & Literature",
+    "id": "622a1c397cc59eab6f950ebe",
+    "correctAnswer": "J. K. Rowling",
+    "incorrectAnswers": [
+      "Christopher Tolkien",
+      "Philip Pullman",
+      "C. S. Lewis"
+    ],
+    "question": "Which author wrote 'Harry Potter'?",
+    "tags": ["arts_and_literature"],
+    "type": "Multiple Choice",
+    "difficulty": "easy",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Society & Culture",
+    "id": "622a1c357cc59eab6f94fcc0",
+    "correctAnswer": "Kra–Dai",
+    "incorrectAnswers": ["Sino-Tibetan", "Austroasiatic", "Afroasiatic"],
+    "question": "The language 'Thai' belongs to which language family?",
+    "tags": ["language", "society_and_culture"],
+    "type": "Multiple Choice",
+    "difficulty": "hard",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Film & TV",
+    "id": "62573f1c3d2f5c16bfb8832c",
+    "correctAnswer": "Pulp Fiction",
+    "incorrectAnswers": [
+      "Saving Private Ryan",
+      "The Treasure of the Sierra Madre",
+      "Memento"
+    ],
+    "question": "Name the movie that matches the following plot summary: 'The lives of mob hitmen, a boxer, a gangster and his wife, and a pair of bandits intertwine in four tales.'",
+    "tags": ["film", "film_and_tv"],
+    "type": "Multiple Choice",
+    "difficulty": "medium",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Geography",
+    "id": "639c9d95929b90846f2fc95b",
+    "correctAnswer": "Burj Khalifa",
+    "incorrectAnswers": [
+      "Shanghai Tower",
+      "Taipei 101",
+      "Empire State Building"
+    ],
+    "question": "What is the tallest building in the world?",
+    "tags": [
+      "architecture",
+      "geography",
+      "tourist_attractions",
+      "buildings",
+      "general_knowledge"
+    ],
+    "type": "Multiple Choice",
+    "difficulty": "medium",
+    "regions": [],
+    "isNiche": false
+  },
+  {
+    "category": "Society & Culture",
+    "id": "6266e6b3ff2394bd44dee05e",
+    "correctAnswer": "Nine",
+    "incorrectAnswers": ["Four", "Black", "Two"],
+    "question": "In Italian, what is the meaning of the word 'nove'?",
+    "tags": ["language", "translations", "society_and_culture"],
+    "type": "Multiple Choice",
+    "difficulty": "hard",
+    "regions": [],
+    "isNiche": false
+  }
+]
