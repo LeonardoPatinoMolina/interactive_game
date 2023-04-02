@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import { AiFillSetting } from "react-icons/ai"
-import { BsFastForwardFill } from "react-icons/bs"
+import { BsFastForwardFill, BsFillPlayFill } from "react-icons/bs"
 import { RiGuideFill } from "react-icons/ri"
 import { Footer } from "../components/Footer";
 
@@ -26,19 +25,19 @@ export const Home = () => {
         </article>
         <nav className="home__section__options">
           <Link 
-            className="btn_noumorfus" 
+            className="home__section__options__instructions btn_noumorfus" 
             to={'/instructions'}
           >Instrucciones
             <RiGuideFill size={20} />
           </Link >
           <Link 
-            className="btn_noumorfus" 
+            className="home__section__options__play btn_noumorfus" 
             to={'/configplay'}
-          >Configurar partida
-          <AiFillSetting size={20} />
+          >Nueva partida
+          <BsFillPlayFill size={20} />
           </Link>
           <Link 
-            className="btn_noumorfus" 
+            className="home__section__options__quick_play btn_noumorfus" 
             to={`/playzone/any`}
           >Partida rapida
             <BsFastForwardFill size={20} />

@@ -119,30 +119,22 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   function moveHandler(e: any): void {
     if (isMove) {
       e.preventDefault();
-      if((currentPosition.current?.x! + itemDraggable.current?.offsetWidth!) >= window.innerWidth - 6 || 
-      currentPosition.current?.y! + itemDraggable.current?.offsetHeight! >= window.innerHeight - 6){
-        console.log('mm');
-        
-        const newPos = getAligmentPosition("center", itemDraggable);
-        translateItem(newPos.x, newPos.y, itemDraggable?.current!);
-        currentPosition.current = {x: newPos.x, y: newPos.y}
-        setInitialPosition(()=>newPos);
+      if (!itemDraggable.current) return;
+      if((currentPosition.current?.x! + itemDraggable.current?.offsetWidth!) >= window.innerWidth - 5 || 
+      currentPosition.current?.y! + itemDraggable.current?.offsetHeight! >= window.innerHeight - 5){
+        changePosition("center")
         return;
       }
       let newX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
       let newY = e instanceof MouseEvent ? e.clientY : e.touches[0].clientY;
 
-      if (itemDraggable.current) {
-        const newPosition = {
-          x: newX - initialPosition.x!,
-          y:  newY - initialPosition.y!
-        }
-
-        currentPosition.current = {x: newPosition.x, y: newPosition.y}
-        translateItem(newPosition.x, newPosition.y, itemDraggable.current);
-      } else {
-        throw new Error("No hay referencia a itemDraggable");
+      const newp: Vector = {
+        x: newX - initialPosition.x!,
+        y:  newY - initialPosition.y!
       }
+
+      currentPosition.current = {x: newp.x, y: newp.y}
+      translateItem(newp.x, newp.y, itemDraggable.current);
     }
   } //end movehandler
 
@@ -159,6 +151,7 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
     const pos = getAligmentPosition(position, itemDraggable);
     translateItem(pos.x, pos.y,itemDraggable?.current!);
     currentPosition.current = {x: pos.x, y: pos.y}
+    setIsMove(()=>false)
   }
 
   return [ itemDraggable, changePosition, currentPosition.current!];
@@ -183,7 +176,7 @@ function getAligmentPosition(
   ): Vector {
     const itemWidth = item.current?.offsetWidth;
     const itemHeight = item.current?.offsetHeight;
-    const headerOffset = 35;
+    const headerOffset = -35;//offset para resolución movil
     switch (aligment) {
       case 'center':
         return {

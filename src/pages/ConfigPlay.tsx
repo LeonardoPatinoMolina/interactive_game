@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsFillCaretLeftFill } from "react-icons/bs";
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { categories } from "../assets/categories.json";
 import { Footer } from "../components/Footer";
@@ -36,10 +36,10 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
     let choice: string | undefined = undefined;
     if (name === "category") {
       choice = await modalCategory.open();
-    } else if (name === "difficulty"){
+    } else if (name === "difficulty") {
       choice = await modalDifficulty.open();
     }
-    if(choice){
+    if (choice) {
       setForm((prev) => ({ ...prev, [name as string]: choice }));
     }
   };
@@ -47,6 +47,25 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setForm((prev) => ({ ...prev, [name as string]: value }));
+  };
+
+  const handleArrows = (e: React.MouseEvent<HTMLElement>) => {
+    const ar = e.currentTarget.dataset.arrow;
+    setForm((prev) => {
+      const limitInt = parseInt(prev.limit);
+      let newLimit: number;
+      if (ar === "left") {
+        if (limitInt <= 1) return prev;
+        newLimit = limitInt - 1;
+      } else {
+        if (limitInt >= 20) return prev;
+        newLimit = limitInt + 1;
+      }
+      return {
+        ...prev,
+        limit: newLimit.toString(),
+      };
+    });
   };
 
   return (
@@ -82,15 +101,32 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
           </label>
           <label className="configplay__form__label" htmlFor="">
             Cantidad de preguntas (min: 1 - max: 20)
-            <input
-              min={1}
-              max={20}
-              className="configplay__form__amount"
-              type="number"
-              name="limit"
-              value={form.limit}
-              onChange={handleChange}
-            />
+            <div className="configplay__form__amount_wrapper">
+              <div
+                className="configplay__form__amount__left"
+                data-arrow="left"
+                onClick={handleArrows}
+              >
+                <BsFillCaretLeftFill />
+              </div>
+              <input
+                min={1}
+                max={20}
+                className="configplay__form__amount"
+                type="number"
+                name="limit"
+                required
+                value={form.limit}
+                onChange={handleChange}
+              />
+              <div
+                className="configplay__form__amount__right"
+                onClick={handleArrows}
+                data-arrow="right"
+              >
+                <BsFillCaretRightFill />
+              </div>
+            </div>
           </label>
           <label className="configplay__form__label">
             Dificultad
@@ -99,7 +135,11 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
               onClick={(e) => handleElection(e)}
               data-name={"difficulty"}
             >
-              {DIFFICULTY_ES[form.difficulty as "hard" | "easy" | "medium" | "null"]}
+              {
+                DIFFICULTY_ES[
+                  form.difficulty as "hard" | "easy" | "medium"
+                ]
+              }
             </div>
           </label>
           <div className="configplay__form__bottom">

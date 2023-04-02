@@ -125,18 +125,40 @@
     }
     
     &__options{
-      @include g.mix-flex-aligment(unset);
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      align-items: center;
+      justify-items: center;
       width: 100%;
       flex-grow: 1;
       gap: 1rem;
       padding: 1rem;
       margin-bottom: 1rem;
       
-      @include u.breakpoint('medium'){
-        @include g.mix-flex-aligment(space-evenly);
-        flex-direction: row;
+      @include u.breakpoint-down('small'){
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3,auto);
       } 
+
+      &__instructions, &__play, &__quick_play{
+        font-weight: bold;
+      }
+      &__quick_play{
+        @include u.breakpoint-down('small'){
+          grid-row: 2/3;
+          font-size: 1rem;
+        }
+      }
+      &__play{
+        font-size: 1.5rem;
+        padding: 1.1rem;
+        
+        @include u.breakpoint-down('small'){
+          grid-row: 1/2;
+          font-size: 1rem;
+        }
+
+      }
 
     }//end options
   }//end section

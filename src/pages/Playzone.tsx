@@ -50,10 +50,11 @@ export const Playzone: React.FC = () => {
     };
     
   const defeatHandle = ()=>{
-    setProgress((prev3)=>({...prev3, bads: prev3.bads + 1}))
+    setProgress((prev3)=>({...prev3, bads: prev3.bads + 1}));
+    generator?.next();
   }
   useEffect(()=>{
-    if(allQuestions?.length - (progress.bads + progress.goods) === 0) endHandle();
+    if(allQuestions?.length - (progress.bads + progress.goods) <= 0) endHandle();
   },[progress])
 
   return (

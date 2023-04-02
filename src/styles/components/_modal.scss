@@ -29,6 +29,17 @@
   0 20px 10px 0 #32325d40;
   text-shadow:0 0 6px #0006;
   border-radius: 10px;
+
+  &::-webkit-scrollbar{
+    width: .5rem;
+  }
+  &::-webkit-scrollbar-track,&::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+    margin: .5rem;
+    background-color: #0004;
+  }
   
 
   @include u.breakpoint-down('small'){

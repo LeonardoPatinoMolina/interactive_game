@@ -5,19 +5,18 @@
   background: linear-gradient(#fff1, #fff4);
   backdrop-filter: blur(2px) saturate(130%);
   border-top: 1px solid #0005;
-  // box-shadow: 0 0 10px 0 #5667;
-
   margin: 0;
   width: 100%;
   min-height: 90px;
   font-family: g.$font;
   font-weight: bold;
   color: #0008;
-  // text-shadow:0 0 6px #0006;
   font-size: .8rem;
   padding: 10px;
   @include g.mix-flex-aligment(unset);
-
+  @include u.breakpoint("medium"){
+    font-size: 1rem;
+  }
   &__list{
     @include g.mix-flex-aligment(space-evenly);
     flex-wrap: wrap;

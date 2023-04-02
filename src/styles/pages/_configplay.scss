@@ -10,7 +10,6 @@
   flex-direction: column;
   background: g.$gradient-primary;
   color: #0008;
-  text-shadow: 0 0 6px #0005;
   z-index: -10;
 
 &__title{
@@ -19,6 +18,7 @@
   text-align: center;
   font-family: g.$primaryfont;
   font-weight: 400;
+  text-shadow: 0 0 6px #0005;
 }
   &__form{
     @include g.mix-flex-aligment(center);
@@ -62,12 +62,38 @@
       font-size: 1rem;
       font-weight: bold;
       background-color: transparent;
-      backdrop-filter: saturate(130%);
-      box-shadow: inset 0 0 5px 0 #0003;
-      // outline: 1px solid #0006;
-      border-radius: 10px;
       padding: 10px;
-    }
+
+      &::-webkit-inner-spin-button, &::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
+      &_wrapper{
+        box-shadow: inset 0 0 5px 0 #0003;
+        @include g.mix-flex-aligment(unset);
+        width: 100%;
+        height: 65px;
+        backdrop-filter: saturate(130%);
+        border-radius: 10px;
+      }
+      &__left, &__right{
+        @include g.mix-flex-aligment(center);
+        height: 100%;
+        width: 20%;
+        border-radius: 10px 0 0 10px;
+        cursor: pointer;
+        transition: background-color .3s;
+        user-select: none;
+
+        &:hover{
+          background-color: #fff3;
+        }
+      }
+      &__right{
+        border-radius: 0 10px 10px 0;
+      }
+    }//end amount
 
     &__bottom{
       @include g.mix-flex-aligment(space-evenly);

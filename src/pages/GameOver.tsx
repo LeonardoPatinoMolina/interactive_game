@@ -3,7 +3,6 @@ import { generateRandomInt } from '../utilities/utils'
 import responsesJson from '../assets/finishResponses.json'
 import { useParams, Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
-import { SlLike } from "react-icons/sl"
 import { AiFillHome } from "react-icons/ai"
 import { MdRestartAlt } from "react-icons/md"
 
@@ -36,7 +35,7 @@ const GameOver: React.FC<GameOverProps> = () => {
     else{
       levelSentence = 'goodOnes'
     }
-    const sentence = responsesJson.responses[levelSentence][generateRandomInt(0,10)]
+    const sentence = responsesJson.responses[levelSentence][generateRandomInt(0,9)]
     return sentence;
   }
 

@@ -1,13 +1,12 @@
-/**
- * Clase encargada de mediar entre distintos eventos 
- * de forma tal que 
- */
 
 export interface Observer {
   eventName: string; 
   listener: (e: CustomEvent)=>void;
 }
 
+/**
+ * Clase encargada de mediar entre distintos eventos 
+ */
 export class MyEventMediator {
   private eventEmitter: EventTarget;
   private observers: Observer[] = [];
@@ -28,7 +27,6 @@ export class MyEventMediator {
   
   /**
    * Método que subscribe un observer a un evento personalizado,
-   * 
    */
   on(eventName: string, listener: (e: CustomEvent)=>void ) {
     this.eventEmitter.addEventListener(eventName, listener as EventListener);
@@ -37,16 +35,19 @@ export class MyEventMediator {
       this.observers.push(newObserver)
     }else throw new Error('observer existente: el observer que intenta subscribir ya se encuentra en existencia')
   }
-  // método para eliminar un EventListener del evento personalizado
+  /**
+   *  método para eliminar un EventListener del evento personalizado
+   */
   off(eventName: string, listener: (e: CustomEvent)=>void) {
     const observer = {eventName,listener}
-    if(!this.observers.includes(observer)) throw new Error('el presente observer no existe en el presente meidador');
+    if(!this.observers.includes(observer)) throw new Error('el presente observer no existe en el presente mediador');
 
     this.eventEmitter.removeEventListener(eventName, listener as EventListener);
-      this.observers = this.observers.filter((o)=>observer !== o);
-    
+    this.observers = this.observers.filter((o)=>observer !== o);
   }
-  // método para eliminar todos los eventos de la presente instancia
+  /**
+   * método para eliminar todos los eventos de la presente instancia
+   */
   offAll() {
     this.observers.forEach((o=>{
       this.eventEmitter.removeEventListener(o.eventName, o.listener as EventListener);

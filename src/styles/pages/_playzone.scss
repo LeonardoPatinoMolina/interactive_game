@@ -11,7 +11,7 @@
   
   @include u.breakpoint-down('small'){
     grid-template-columns: 1fr;
-    grid-template-rows: 70px auto auto;
+    grid-template-rows: auto auto 70px;
   }
 
   &__stats{
@@ -20,6 +20,7 @@
     @include g.mix-flex-aligment(unset);
     
     @include u.breakpoint-down('small'){
+      grid-row: 3/4;
       background-color: blue;
     }
 
@@ -36,7 +37,7 @@
     
     @include u.breakpoint-down('small'){
       grid-column: 1/2;
-      grid-row: 2/3;
+      grid-row: 1/2;
     }
 
     &>span{
@@ -62,7 +63,7 @@
 
     @include u.breakpoint-down('small'){
       grid-column: 1/2;
-      grid-row: 3/4;
+      grid-row: 2/3;
     }
 
     &>span{
