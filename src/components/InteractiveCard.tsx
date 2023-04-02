@@ -1,8 +1,4 @@
-import React, { LegacyRef, useEffect } from 'react';
-import { useDraggable } from '../../hooks/useDraggable';
-import { Aligment } from '../../types/globals';
-import { MyEmitter } from '../../utilities/emitter';
-import './style/interectivecard.scss';
+import React, { LegacyRef } from 'react';
 
 interface DivMakerProps {
   amount: number;
@@ -29,4 +25,4 @@ const InteractiveCard: React.FC<InteractiveCardProps> = ({body, dragRef}) => {
   )
 }
 
-export {InteractiveCard}
+export { InteractiveCard };

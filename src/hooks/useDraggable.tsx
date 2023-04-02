@@ -26,9 +26,12 @@ const EVENTS: Record<DeviceType, { down: string; move: string; up: string }> =
   },
 };
 
+/**
+ * Hook encargado de controlar la caracteristica drag de un item determinado 
+ */
 export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   
-  //item que será retornado comarreglo para referenciar el item que
+  //item que será retornado coma rreglo para referenciar el item que
   //requiera ser draggable
   const itemDraggable = useRef<HTMLElement>();
   
@@ -54,9 +57,18 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   //establecemos la posición inicial del item
   useEffect(() => {
     if (!itemDraggable.current) return;
-    const p = geInitialState(args, itemDraggable);
-    translateItem(p.x, p.y, itemDraggable.current);
-    currentPosition.current = {x: p.x, y: p.y}
+    let initialPosition: Vector;
+    if(!args) {
+      initialPosition = {x: 0, y: 0}
+    }
+    else if(args.position){
+      initialPosition = args.position;
+    }
+    else{
+      initialPosition = getAligmentPosition(args?.aligment!, itemDraggable);
+    }
+    translateItem(initialPosition.x, initialPosition.y, itemDraggable.current);
+    currentPosition.current = {x: initialPosition.x, y: initialPosition.y}
     itemDraggable.current.style.position = 'absolute'
   },[itemDraggable.current]);
 
@@ -97,8 +109,8 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   function downHandler(e: any): void {
     e.preventDefault();
     //coordenadas inciales
-    const pX = deviceType === "mouse" ? e.clientX : e.touches[0].clientX;
-    const pY = deviceType === "mouse" ? e.clientY : e.touches[0].clientY;
+    const pX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+    const pY = e instanceof MouseEvent ? e.clientY : e.touches[0].clientY;
     
     setInitialPosition(()=>({x: pX - currentPosition.current?.x!, y: pY - currentPosition.current?.y!}));
     setIsMove(() => true);
@@ -107,7 +119,16 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   function moveHandler(e: any): void {
     if (isMove) {
       e.preventDefault();
-
+      if((currentPosition.current?.x! + itemDraggable.current?.offsetWidth!) >= window.innerWidth - 6 || 
+      currentPosition.current?.y! + itemDraggable.current?.offsetHeight! >= window.innerHeight - 6){
+        console.log('mm');
+        
+        const newPos = getAligmentPosition("center", itemDraggable);
+        translateItem(newPos.x, newPos.y, itemDraggable?.current!);
+        currentPosition.current = {x: newPos.x, y: newPos.y}
+        setInitialPosition(()=>newPos);
+        return;
+      }
       let newX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
       let newY = e instanceof MouseEvent ? e.clientY : e.touches[0].clientY;
 
@@ -135,7 +156,7 @@ export const useDraggable = (args: useDraggableArgs): useDraggableReturns => {
   //función encargada de cambiar la ubicacion del item desde afuera por
   //alineamiento
   function changePosition(position: Aligment){
-    const pos = geInitialState({aligment: position}, itemDraggable);
+    const pos = getAligmentPosition(position, itemDraggable);
     translateItem(pos.x, pos.y,itemDraggable?.current!);
     currentPosition.current = {x: pos.x, y: pos.y}
   }
@@ -153,23 +174,17 @@ function translateItem(xPosition: number, yPosition: number, element: HTMLElemen
 }
 
 /**
- * Encargada de establecer el vector inicial según se requiera
- * este vector determina la posición en la que se encontrará el item por vez primera
- * según se estipule en los argumentos del hook
+ * Encargada de establecer un vector según se estipule mediante
+ * el dato aligment
  */
-function geInitialState(
-    args: useDraggableArgs, 
+function getAligmentPosition(
+    aligment: Aligment, 
     item: React.MutableRefObject<HTMLElement | undefined>,
   ): Vector {
-  if(!args)return {x: 0, y: 0}
-  else if(args.position){
-    return args.position;
-  }
-  else{
     const itemWidth = item.current?.offsetWidth;
     const itemHeight = item.current?.offsetHeight;
     const headerOffset = 35;
-    switch (args.aligment) {
+    switch (aligment) {
       case 'center':
         return {
           x: (window.innerWidth - itemWidth!) / 2, 
@@ -219,5 +234,4 @@ function geInitialState(
       default:
         throw new Error('Argumento no valido en useDraggable Hook')
     }//end switch
-  }//end else
 }//end geInitialState

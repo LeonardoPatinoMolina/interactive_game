@@ -1,4 +1,5 @@
-@use '../../../styles/globals' as g;
+@use '../globals/' as g;
+@use '../util/' as u;
 
 .interactive-card{
   position: absolute;
@@ -7,15 +8,14 @@
   
 
   &__content{
-    box-shadow: 0 0 3px 1px #0008;
     border-radius: .5em;
     cursor: move;
-    font-family: g.$primaryfont;
+    font-family: g.$font;
     font-weight: 600;
-    color: #fff;
-    text-shadow: 0 0 3px #000;
-    -webkit-text-stroke: 5px solid #000;
-    background-color: #f1f1f1;
+    color: #0009;
+    background-color: #f1f1f120;
+    backdrop-filter: blur(9px) saturate(140%);
+    box-shadow: inset 0 0 40px 0 #fff6, 0 0 4px 0 #0d0d1866;
     padding: 1rem;
     min-height: 100px;
     width: 200px;
@@ -29,20 +29,11 @@
     user-select: none;
     overflow: hidden;
 
-    &::after{
-      content: "";
-      width: 100%;
-      height: 100%;
-      background: url('https://www.nsca.org/wp-content/uploads/2021/05/Question-Mark-small.jpg');
-      background-size: cover;
-      background-position: center;      
-      position: absolute;
-      isolation: isolate;
-      overflow: hidden;
-      filter: brightness(62%) blur(.7px);
-      z-index: -1;
+    @include u.breakpoint-down("small"){
+      font-size: .6rem;
+      width: 150px;
+      min-height: 90px;
     }
-
 
     &:before {
       content: "";

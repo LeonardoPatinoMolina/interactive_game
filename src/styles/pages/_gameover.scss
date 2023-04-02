@@ -2,7 +2,6 @@
 @use '../util/' as u;
 
 .gameover{
-  background-color: red;
   min-height: 100vh;
   width: 100%;
   max-width: 100vw;
@@ -23,6 +22,11 @@
     font-size: 1.6rem;
     font-family: g.$font;
     font-weight: bold;
+    text-align: center;
+
+    @include u.breakpoint-down("small"){
+      font-size: 1.2rem;
+    }
 
     &::after{
       content: "! ";
@@ -43,6 +47,11 @@
     width: 50%;
     @include g.mix-flex-aligment(unset);
     flex-direction: column;
+    
+    @include u.breakpoint-down("small"){
+      width: 90%;
+      font-size: .9rem;
+    }
 
       &__paragraph{
         &>em{
@@ -91,7 +100,15 @@
     @include g.mix-flex-aligment(space-evenly);
     width: 100%;
     flex-grow: 1;
-  }
+    height: 100px;
+    
+    
+    @include u.breakpoint-down("small"){
+      flex-direction: column;
+      height: 180px;
+    }
+
+  }//end nav
 }
 
 @keyframes like-rotation {

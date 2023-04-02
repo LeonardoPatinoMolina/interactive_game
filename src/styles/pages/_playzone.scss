@@ -107,7 +107,7 @@
           font-size: 1.2rem;
           
           @include u.breakpoint-down('small'){
-            font-size: .7rem;
+            font-size: .8rem;
             &>span{
               display: none;
             }
@@ -163,23 +163,27 @@
           transition: background-color .3s;
           
           @include u.breakpoint-down('small'){
-            font-size: .7rem;
-          }
-          &:hover{
-            background: linear-gradient(#333, #444);
+            font-size: .6rem;
           }
           
           &:nth-child(1){
             flex-grow: 48;
             margin-left: 5px;
+            &:hover{
+              background: linear-gradient(#333, #444);
+            }
           }
           &:nth-child(2){
             flex-grow: 48;
+            &:hover{
+              background: linear-gradient(#333, #444);
+            }
           }
           &:nth-child(3){
             flex-grow: 4;
             background-color: #ff2347;
             margin-right: 5px;
+
           }
           
         }//end btn
@@ -187,10 +191,4 @@
     }//end nav
   }//end stats
 
-  &confirm{
-    top: 0;
-    left: 0;
-    position: absolute;
-    z-index: 2;
-  }
 }

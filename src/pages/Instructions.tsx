@@ -11,7 +11,7 @@ const Instructions = () => {
         <BsFillCaretLeftFill />
         Volver a inicio
       </Link>
-      <p className='instructions__paragraph'>La reglas son muy sensillas, tendrás en la que aparecerá flotando una targeta con la cual podrás interacuar. Puedes arrastrarla de un lugar a otro manteniendo el cursor o tu dedo sobre ella:</p>
+      <p className='instructions__paragraph'>La reglas son muy sensillas, una vez que inicie la partida, aparecerá flotando una targeta con la cual podrás interatcuar. Puedes arrastrarla de un lugar a otro manteniendo el cursor o tu dedo sobre ella:</p>
       <div className="instructions__grafic1">
         <svg width={200} height={150}>
           <rect x={0} rx={10} ry={10} y={0} width={200} height={150} fill='#fff6' strokeWidth={5} stroke="#000" />
@@ -39,7 +39,7 @@ const Instructions = () => {
         </svg>
       </div>
       
-      <p className='instructions__paragraph'>puedes elegir uan de ellas arrastrando la tarjeta hasta el área que le corresponda.</p>
+      <p className='instructions__paragraph'>puedes elegir una de ellas arrastrando la tarjeta hasta el zona que le corresponda.</p>
       
       <p className='instructions__paragraph'>Luego que estes seguro que la tarjeta está sobre la zona, confirmas tu elección con la opción: <em>confirmar</em></p>
       <div className='instructions__grafic3'>
@@ -56,7 +56,7 @@ const Instructions = () => {
         </svg>
       </div>
 
-      <p className='instructions__paragraph'>Si decides afrontar el reto y tu elección resulta ser la correcta, obtendrás un <em>punto bueno</em>, si resulta estar icorrecta obtendrás un <em>punto malo</em>, siempre que te rindas te ganarás un punto malo <em>:(</em></p>
+      <p className='instructions__paragraph'>Si decides afrontar el reto y tu elección resulta ser la correcta, obtendrás un <em>punto bueno</em>, si resulta estar incorrecta obtendrás un <em>punto malo</em>, siempre que te rindas te ganarás un punto malo <em>:(</em></p>
       <div>
 
       </div>
