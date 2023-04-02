@@ -47,7 +47,7 @@ button{
   user-select: none;
   cursor: pointer;
   box-shadow: 
-    0 0 20px 0 #fff6,
+    // 0 0 20px 0 #fff6,
     0 20px 10px 0 #32325d40;
   // text-shadow:0 0 6px #0006;
   border-radius: 10px;
@@ -58,7 +58,7 @@ button{
     transform: translateY(6px);
     background-color: darken(#f4ffe360, 10%);
     box-shadow: 
-      0 0 20px 0 #fff6,
+      // 0 0 20px 0 #fff6,
       0 10px 10px 0 #32325d40;
   }
 

@@ -9,11 +9,11 @@
   flex-direction: column;
   background: g.$gradient-primary;
   color: #0009;
-  text-shadow: 0 0 6px #0006;
 
   &__title{
     font-family: g.$primaryfont;
     margin: .5rem;
+  text-shadow: 0 0 6px #0006;
   }
   &__paragraph{
     width: 90%;

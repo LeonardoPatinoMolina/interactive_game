@@ -11,8 +11,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  backdrop-filter: blur(9px);
-  background-color: #0003;
+  background-color: #0009;
   z-index: 30;
 }
 
@@ -25,9 +24,8 @@
   height: max(300px, 80vh);
   overflow-y: auto;
   color: #0008;
-  backdrop-filter: blur(3px) saturate(150%);
+  backdrop-filter: saturate(150%);
   box-shadow: 
-  0 0 20px 0 #fff6,
   0 20px 10px 0 #32325d40;
   text-shadow:0 0 6px #0006;
   border-radius: 10px;
@@ -49,9 +47,7 @@
       user-select: none;
       cursor: pointer;
       box-shadow: 
-        0 0 20px 0 #fff6,
         0 20px 10px 0 #32325d40;
-      text-shadow:0 0 6px #0006;
       border-radius: 10px;
       transition: box-shadow .2s, transform .2s;
       padding: .7rem;
@@ -60,7 +56,6 @@
         transform: translateY(6px);
         background-color: darken(#f4ffe360, 10%);
         box-shadow: 
-          0 0 20px 0 #fff6,
           0 10px 10px 0 #32325d40;
       }
     }
