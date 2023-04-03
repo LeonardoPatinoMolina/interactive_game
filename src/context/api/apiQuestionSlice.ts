@@ -44,10 +44,3 @@ export const apiQuestion = createApi({
 })
 
 export const { useGetQuestionQuery, useGetAnyQuestionsQuery } = apiQuestion;
-
-
-// `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=boolean`
-
-
-
-// https://the-trivia-api.com/api/questions?categories=food_and_drink&limit=20&difficulty=medium

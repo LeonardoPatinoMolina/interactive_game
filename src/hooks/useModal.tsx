@@ -2,28 +2,27 @@ import { useState, useEffect } from "react";
 import { LootType } from "../types/globals";
 import { MyEventMediator } from "../utilities/emitter";
 
-type useModalArgs = {
-  loot: LootType
-}
 type useModalReturns = {
   loot: LootType
   open: () => Promise<any>;
   close: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-
-
-export const useModal = (initialConfig: useModalArgs): useModalReturns => {
-  /*el estado controller no es usado por ninguna vista, sin embargo, para su maipulación se
-  * está usando un callback en el initial state, lo cual es un atajo para la reactividad síncrona
-  * */
+export const useModal = (initialConfig: LootType): useModalReturns => {
+  /**
+   * El estado controller consiste en un mediadr de eventos que será el encargado
+   * de notificar cuando la ventana modal obtenga una acción mediante el usuario
+   */
   const [controller] = useState<MyEventMediator>(new MyEventMediator());
-
-  const [loot, setLoot] = useState(initialConfig.loot);
+  /**
+   * El estado loot es la configuracíón general del modal, entre esta se encuentra
+   * el booleando encargado no hacer seguimiento a la apertura o cierre del mismo 
+   */
+  const [loot, setLoot] = useState<LootType>(initialConfig);
   
   useEffect(() => {
     return () => {
-      //nos aseguramos que toda promesa pendiente sea resuelta al des-renderizar componente
+      //nos aseguramos que todo evento pendiente sea removido al des-renderizar componente
       if(controller) controller.offAll();
     };
   }, []);
@@ -33,32 +32,35 @@ export const useModal = (initialConfig: useModalArgs): useModalReturns => {
    * demanda, es decir, para que esta función cumpla su cometido necesita de la 
    * participación de otra función, en este caso, la afunción "confirmM", y hasta entonces 
    * el scope donde se le invoque, no resibirá respuesta de ella.
-   * Naturalmente, el retorno consiste en una promesa que al resolverse contendrá un booleano
+   * Naturalmente, el retorno consiste en una promesa que al resolverse contendrá el dato de interés
    */
   function showM(): Promise<any> {
     setLoot({...loot, isOpen: true});//abrimos el modal
     
-    //creamos un nuevo controlador y le agregamos un eventoEscucha a su evento abort
-    //al dispararse este evento se ejecutará el resolve con el contenido de
-    //target.reason en la cual obtenemos la respuesta de usuario
+    /**
+     * A través del controllador subscribimos un observer al evento "modal-action"
+     * esto con el propósito de resolver la promesa mediante su eventual ejecución. 
+     * La promesa resolverá un dato que recibirá por medio del evento, este representa
+     * información de interés enviada desde la función cofirmM
+     */
     return new Promise((resolve) => {
       controller.on('modal-action', (evnt: CustomEvent)=>{
-        resolve(evnt.detail)
+        resolve(evnt.detail && "")
       })
-      //por último extraemos el controllador en un estado para manipularlo de forma externa
     });
   }
 
   /**
-   * Esta función se encarga de disparar el evento con la eleccion
+   * Esta función se encarga de disparar el evento con el dato de interés
+   * en este caso se trata de la elección que deviene desde un dataset en un elemento 
+   * que ejecuta la función en su evento click
    */
   function confirmM(event: React.MouseEvent<HTMLElement>): void {
-    //resolvemos la promesa disparando el evento 'abort' e inyetamos como 
-    //parametro (reason) la elección del ususario
     setLoot({...loot, isOpen: false});//cerramos el modal
     let choice;
-    if(!event.currentTarget.dataset.choice) choice = undefined;
+    if(!event.currentTarget.dataset?.choice) choice = undefined;
     else choice = event.currentTarget.dataset.choice;
+    //emitimos el evento a travéz del controlador con la elección como dato de interés
     controller.emit<any>('modal-action',choice);
   }
   //la responsabilidad de implementar la función showM está a manos del compoentne donde se 

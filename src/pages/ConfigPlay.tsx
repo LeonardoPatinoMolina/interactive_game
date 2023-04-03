@@ -20,8 +20,8 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
     category: "general_knowledge",
     difficulty: "easy",
   });
-  const modalCategory = useModal({ loot: { isOpen: false } });
-  const modalDifficulty = useModal({ loot: { isOpen: false } });
+  const modalCategory = useModal({ isOpen: false });
+  const modalDifficulty = useModal({ isOpen: false });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,7 +30,7 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
   }
 
   const handleElection = async ({
-    currentTarget,
+    currentTarget
   }: React.MouseEvent<HTMLElement>) => {
     const name = currentTarget.dataset.name;
     let choice: string | undefined = undefined;
@@ -44,25 +44,21 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setForm((prev) => ({ ...prev, [name as string]: value }));
-  };
-
   const handleArrows = (e: React.MouseEvent<HTMLElement>) => {
     const ar = e.currentTarget.dataset.arrow;
-    setForm((prev) => {
-      const limitInt = parseInt(prev.limit);
+    setForm((prevState) => {
+      if(prevState.limit === '') return {...prevState, limit: "0"}
+      const limitInt = parseInt(prevState.limit);
       let newLimit: number;
       if (ar === "left") {
-        if (limitInt <= 1) return prev;
+        if (limitInt <= 1) return prevState;
         newLimit = limitInt - 1;
       } else {
-        if (limitInt >= 20) return prev;
+        if (limitInt >= 20) return prevState;
         newLimit = limitInt + 1;
       }
       return {
-        ...prev,
+        ...prevState,
         limit: newLimit.toString(),
       };
     });
@@ -113,7 +109,7 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
                 name="limit"
                 required
                 value={form.limit}
-                onChange={handleChange}
+                onChange={({target})=>setForm((prev) => ({ ...prev, [target.name]: target.value }))}
               />
               <div
                 className="configplay__form__amount__right"
@@ -128,12 +124,12 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
             Dificultad
             <div
               className="configplay__form__difficulty btn_noumorfus"
-              onClick={(e) => handleElection(e)}
+              onClick={handleElection}
               data-name={"difficulty"}
             >
               {
                 difficult__es[
-                  form.difficulty as "hard" | "easy" | "medium"
+                  form.difficulty as keyof (typeof difficult__es)
                 ]
               }
             </div>

@@ -11,3 +11,31 @@ En esta ocación quise poner en práctica un par de herraminetas que había deja
 - __Redux Toolkit RTK:__ ante el surgimiento de nuevas opciones para el manejo global del estado y asincronía como __react query__, supe de la existencia de este enfoque brindado por el entorno redux, antes de hacer el salto a aquellas nuevas tecnologías quise empaparme un poco con este apartado de la herramienta que ya he manejado con anterioridad respecto a la administración global del estado en react. Luego de entrenar con la documentación se comprende de maravilla.
 - __Sass:__ poco a poco he estado familiarizándome con esta herramienta, me ha resultado muy satisfactoria, y he podido organizar mis hojas de estilo como nunca lo había hecho, además de abrir mis conocimientos a ciertos aspectos del esilizado que no había contemplado con anterioridad como lo son el manejo del diseño _responsive_ y la administración de medidas relativas para mejorar la _accesibilidad_.
 - __CustomHooks:__ este aspecto en particular de react me encanta, poder encapsular lógica compleja para despejar en la medida de lo posible la declaración del componente. En esta ocación he requerido tener consideración los tipos en relación a los argumentos y datos de retorno, cosa que me permite controlar casos de prueva y encontrar errores de forma más rápida y precisa.
+
+## instalación y ejecución
+La instalación de cada dependencia fue realizada con le manejador de paquetes __pnpm__, por ello los comandos que recomiendo para instalar las dendencias siguen el uso de este, sin embargo, tanto npm como pnpm comparten repositorio de modulos de node, puedes usar el pque prefieras, pero como dije mi recomencación es pnpm:
+- para instalación de dependencias:
+~~~bash
+pnpm install
+~~~
+- para ejecución en desrrollo
+~~~bash
+pnpm dev
+~~~
+- para construcción de versión de desarrollo
+~~~bash
+pnpm build
+~~~
+__Y como alternativa:__
+- para instalación de dependencias:
+~~~bash
+npm install
+~~~
+- para ejecución en desrrollo
+~~~bash
+npm run dev
+~~~
+- para construcción de versión de desarrollo
+~~~bash
+npm run build
+~~~

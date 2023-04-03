@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="modal_wrapper" onClick={confirmM}>
           <div className="modal">
             <h2>{title}</h2>
-            {children && <p className="modal__body">{children}</p>}
+            {children && <div className="modal__body">{children}</div>}
             <ul className="modal__options">
               {options.map((o, i) => (
                 <li

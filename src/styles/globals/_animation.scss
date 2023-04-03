@@ -6,7 +6,6 @@
   animation-duration: .4s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
-  /* animation-delay: .2s; */
 }
 
 @keyframes coldDown {
@@ -61,43 +60,4 @@
 .shake-an {
   animation-name: shake;
   animation-duration: 0.7s;
-}
-
-@keyframes loading {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: .3;
-  }
-}
-.loading-an {
-  animation-name: loading;
-  animation-duration: .6s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes loading_img {
-  from{
-    background-position: left;
-  }
-  to{
-    background-position: right;
-  }
-}
-
-.loading_img-an {
-  background: linear-gradient(90deg, 
-    #111, 
-    #111, 
-    red,
-    #111, 
-    #111);
-  background-size: 500% 100%;
-  animation-name: loading_img;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }

@@ -15,20 +15,21 @@
     margin: .5rem;
   text-shadow: 0 0 6px #0006;
   }
-  
+
   &__paragraph{
     width: 90%;
     text-align: center;
     
     @include u.breakpoint('medium'){
       width: 50%;
-    } 
+    }
 
     & em{
       font-weight: bold;
       font-style: normal;
     }
   }
+
   @for $i from 1 to 5{
     &__grafic#{$i}, &__grafic#{$i}{
       opacity: .5;
@@ -50,7 +51,7 @@
     margin: 2rem 0;
     @include g.mix-flex-aligment(space-evenly);
     color: #0008;
-    gap: 5px;
+    gap: u.f-pixel2rem(5);
     backdrop-filter: blur(3px) saturate(150%) brightness(98%);
     user-select: none;
     cursor: pointer;
@@ -58,10 +59,10 @@
       0 0 20px 0 #fff6,
       0 20px 10px 0 #32325d40;
     text-shadow:0 0 6px #0006;
-    border-radius: 10px;
+    border-radius: u.f-pixel2rem(10);
     transition: all .2s;
     padding: .7rem;
-    
+
     &:hover{
       transform: translateY(6px);
       background-color: darken(#f4ffe360, 10%);

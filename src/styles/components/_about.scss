@@ -1,0 +1,65 @@
+@use '../globals' as g;
+@use '../util' as u;
+
+.about{
+  width: 100%;
+  font-size: 1rem;
+  font-weight: normal;
+
+  &__paragraph{
+    font-size: 1rem;
+    width: 98%;
+    
+    @include u.breakpoint-down("small"){
+      font-size: .7rem;
+    }
+    & > em{
+      font-weight: bold;
+    }
+
+  }//end paragrapg
+
+  &__list{
+    @include g.mix-flex-aligment(space-evenly);
+    width: 100%;
+    margin-top: 1rem;
+
+    &__item{
+      text-align: center;
+      position: relative;
+
+      @include u.breakpoint-down("small"){
+        font-size: .7rem;
+      }
+      
+
+      &__logo{
+        height: 70px;
+        width: auto;
+        filter: drop-shadow(0 0 10px #0004);
+
+        @include u.breakpoint-down("small"){
+          height: 50px;
+        }
+      }
+    }//end item
+  }//end list
+
+  &__order_list {
+    width:80%;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1rem;
+
+    & ::marker{
+      font-weight: bold;
+    }
+    &>li{
+      margin: 0;
+      padding: 0;
+    }
+    @include u.breakpoint-down("small"){
+      font-size: .7rem;
+    }
+  }
+}//end main_about

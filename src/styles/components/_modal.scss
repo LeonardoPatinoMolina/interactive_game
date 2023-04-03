@@ -16,25 +16,25 @@
 }
 
 .modal{
-  padding: 10px;
+  padding: u.f-pixel2rem(10);
   background-color: #f1f2f3;
   font-weight: bold;
   width: min(60%, 90vw);
-  border-radius: 1rem;
-  height: max(300px, 80vh);
+  min-height: 250px;
+  max-height: 80vh;
   overflow-y: auto;
   color: #0008;
   backdrop-filter: saturate(150%);
   box-shadow: 
   0 20px 10px 0 #32325d40;
-  text-shadow:0 0 6px #0006;
-  border-radius: 10px;
+  text-shadow:0 0 3px #0006;
+  border-radius: u.f-pixel2rem(10);
 
   &::-webkit-scrollbar{
     width: .5rem;
   }
   &::-webkit-scrollbar-track,&::-webkit-scrollbar-thumb{
-    border-radius: 10px;
+    border-radius: u.f-pixel2rem(10);
   }
   &::-webkit-scrollbar-thumb{
     margin: .5rem;
@@ -46,7 +46,7 @@
   width: 90%;
   }
   @include u.breakpoint('medium'){
-  width: 40%;
+  width: 50%;
   }
   &__options{
     @include g.mix-flex-aligment(unset, flex-start);

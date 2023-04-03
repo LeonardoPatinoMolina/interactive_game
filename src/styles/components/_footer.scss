@@ -12,8 +12,9 @@
   font-weight: bold;
   color: #0008;
   font-size: .8rem;
-  padding: 10px;
+  padding: u.f-pixel2rem(10);
   @include g.mix-flex-aligment(unset);
+
   @include u.breakpoint("medium"){
     font-size: 1rem;
   }
@@ -23,7 +24,7 @@
     margin: 0;
     height: 100%;
     width: 100%;
-    gap: 10px;
+    gap: u.f-pixel2rem(10);
     
     &__item{
       position: relative;
@@ -47,11 +48,12 @@
     left: 30%;
     background-color: #000000;
     box-shadow: 0 0 6px 1px #0008;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: u.f-pixel2rem(5);
+    padding: u.f-pixel2rem(5);
     font-weight: bold;
     color:#fff;
     display: none;
+    
     &.copied{
       display: inline-block;
     }
