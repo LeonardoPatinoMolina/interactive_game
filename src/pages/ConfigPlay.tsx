@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { categories } from "../assets/categories.json";
 import { Footer } from "../components/Footer";
 import { Modal } from "../components/Modal";
+import { ApiQuestionArgs } from "../context/api/apiQuestionSlice";
 import { useAppDispatch } from "../context/reduxHooks";
 import { setConfigQuestion } from "../context/store/feature/question";
 import { useModal } from "../hooks/useModal";
-import { DIFFICULTY_ES } from "../utilities/utils";
-import { ApiQuestionArgs } from "../context/api/apiQuestionSlice";
+import difficult__es from '../assets/difficult_es.json'
 
 interface ConfigPLayProps {}
 
@@ -80,11 +80,7 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
         title="Dificultad"
         confirmM={modalDifficulty.close}
         loot={modalDifficulty.loot}
-        options={[
-          { choice: "easy", content: "Fácil" },
-          { choice: "medium", content: "Media" },
-          { choice: "hard", content: "Difícil" },
-        ]}
+        options={Object.entries(difficult__es).map(([k,v])=>({choice: k, content: v}))}
       />
       <section className="configplay">
         <h1 className="configplay__title">Configurar partida</h1>
@@ -100,7 +96,7 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
             </div>
           </label>
           <label className="configplay__form__label" htmlFor="">
-            Cantidad de preguntas (min: 1 - max: 20)
+            Cantidad de preguntas <br /> (min: 1 - max: 20)
             <div className="configplay__form__amount_wrapper">
               <div
                 className="configplay__form__amount__left"
@@ -136,7 +132,7 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
               data-name={"difficulty"}
             >
               {
-                DIFFICULTY_ES[
+                difficult__es[
                   form.difficulty as "hard" | "easy" | "medium"
                 ]
               }

@@ -15,12 +15,13 @@
     margin: .5rem;
   text-shadow: 0 0 6px #0006;
   }
+  
   &__paragraph{
     width: 90%;
     text-align: center;
     
     @include u.breakpoint('medium'){
-      width: 60%;
+      width: 50%;
     } 
 
     & em{

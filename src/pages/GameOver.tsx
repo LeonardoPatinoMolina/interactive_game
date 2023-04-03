@@ -19,13 +19,14 @@ const GameOver: React.FC<GameOverProps> = () => {
    */
   const makeSentence = (): string => {
     let percent: number; 
-    percent = (parseInt(good!) * parseInt(all!) / 100) * 100;
+    percent = (parseInt(good!) / parseInt(all!) * 100);
     if(parseInt(all!) === parseInt(bad!) + parseInt(good!)) {
       if(bad === "0") percent = 100;
       if(good === "0") percent = 0;
     };
     
     let levelSentence: keyof (typeof responsesJson.responses);
+    
     if(percent <= 33){
       levelSentence = 'badOnes';
     }

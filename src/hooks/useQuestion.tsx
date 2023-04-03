@@ -26,6 +26,11 @@ type useQuestionReturns = {
   }
 }
 
+/**
+ * 
+ * @param {useQuestionArgs} args 
+ * @returns {useQuestionReturns}
+ */
 export const useQuestion: any = (args: useQuestionArgs): useQuestionReturns => {
   const { config } = useAppSelector((state) => state.question);
   const [generator, setGenerator] = useState<Generator>();

@@ -26,9 +26,4 @@ export class QuestionsAdapter{
     })
   }
 
-  private decodeText(text: string){
-    const decoT = atob(text);
-    const newText = decoT.replace(/\\(.)/g, '$1');
-    return newText;
-  }
 }

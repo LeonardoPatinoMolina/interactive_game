@@ -4,86 +4,26 @@
 .playzone{
   background-color: #f1f2f3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 70px auto;
   width: 100vw;
   height: 100vh;
   
   @include u.breakpoint-down('small'){
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 70px;
+    grid-template-rows: auto 70px;
   }
 
-  &__stats{
-    grid-column: 1/3;
-    grid-row: 1/2;
-    @include g.mix-flex-aligment(unset);
-    
-    @include u.breakpoint-down('small'){
-      grid-row: 3/4;
-      background-color: blue;
-    }
-
-    &__btn{
-      z-index: 2;
-    }
-  }
-
-  &__one-sector{
-    background: linear-gradient(#9fe6c5,#97ffcb);
-    position: relative;
-    grid-column: 1/2;
-    grid-row: 2/3;
-    
-    @include u.breakpoint-down('small'){
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
-
-    &>span{
-      font-weight: bold;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%) translateX(-50%);
-      color: #0007;
-      text-shadow:0 0 10px #0004;
-      font-size: 1.4rem;
-      @include u.breakpoint-down('small'){
-        font-size: .9rem;
-      }
-    }
-  }//end one sector
-
-  &__two-sector{
-    grid-column: 2/3;
-    grid-row: 2/3;
-    background: linear-gradient(#e6b09f,#ffc697);
-    position: relative;
-
-    @include u.breakpoint-down('small'){
-      grid-column: 1/2;
-      grid-row: 2/3;
-    }
-
-    &>span{
-      font-weight: bold;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%) translateX(-50%);
-      color: #0007;
-      text-shadow:0 0 10px #0004;
-      font-size: 1.4rem;
-      @include u.breakpoint-down('small'){
-        font-size: .9rem;
-      }
-    }
-  }//end two sector
   &__stats{
     @include g.mix-flex-aligment(space-between);
+    grid-column: 1/3;
+    grid-row: 1/2;
     background: #f1f2f3;
     font-family: g.$font;
+  
+    @include u.breakpoint-down('small'){
+      grid-row: 2/3;
+    }
 
     &__status{
       width: 100px;
@@ -175,12 +115,6 @@
             }
           }
           &:nth-child(2){
-            flex-grow: 48;
-            &:hover{
-              background: linear-gradient(#333, #444);
-            }
-          }
-          &:nth-child(3){
             flex-grow: 4;
             background-color: #ff2347;
             margin-right: 5px;
@@ -192,4 +126,101 @@
     }//end nav
   }//end stats
 
+  &__main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+      
+    @include u.breakpoint-down('small'){
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    &__question{
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      width: 350px;
+      min-height: 100px;
+      padding: .5rem;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-family: g.$font;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 0 10px 0 #0008, inset 0 0 10px 0 #000;
+      background-color: #fff2;
+      border: 5px solid #fff3;
+      backdrop-filter: blur(9px) saturate(150%);
+      color: #0008;
+      border-radius: 1rem;
+      @include g.mix-flex-aligment(space-evenly);
+      flex-direction: column;
+      
+      @include u.breakpoint-down('small'){
+        border: 3px solid #fff3;
+        width: 250px;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        
+        &>p{
+          font-size: .8rem;
+        }
+      }
+      &__title{
+        font-size: 1.4rem;
+        @include u.breakpoint-down('small'){
+          font-size: 1.1rem;
+        }
+      }
+    }
+    &__sector{
+      position: relative;
+      cursor: pointer;
+      &:hover{
+        box-shadow: inset 0 0 20px 0 #0005;
+      }
+
+      &>span{
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        color: #0007;
+        text-shadow:0 0 10px #0004;
+        font-size: 1.4rem;
+        @include u.breakpoint-down('small'){
+          font-size: .7rem;
+        }
+      }
+
+      &.--one{
+        background: linear-gradient(#68ffb8,#97ffcb);
+        
+        @include u.breakpoint-down('small'){
+          grid-column: 1/2;
+          grid-row: 1/2;
+        }
+    
+        &:hover{
+          background: linear-gradient(#6ae9ae,#48df93);
+        }
+      }//end one sector
+    
+      &.--two{
+        background: linear-gradient(#e0a18e,#ffa892);
+    
+        @include u.breakpoint-down('small'){
+          grid-column: 1/2;
+          grid-row: 2/3;
+        }
+        &:hover{
+          background: linear-gradient(#ff9f82,#ff8b6e);
+        }
+
+      }//end two sector
+    }
+  }//end main
+  
 }

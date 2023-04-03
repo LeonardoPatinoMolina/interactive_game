@@ -10,13 +10,13 @@ export const Home = () => {
     <section className="home">
       <header className="home__header">
         <h1 className="home__header__title">
-          ¿V<span className="home__header__title--span">ERDE</span>-R<span className="home__header__title--span">OJO</span>?
+          ¿V<span className="home__header__title--span">ERDE</span>. o .R<span className="home__header__title--span">OJO</span>?
         </h1>
         <div className="home__header__logo open">
-          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>O</div>)}
+          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>V</div>)}
         </div>
         <div className="home__header__logo close">
-          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>X</div>)}
+          {Array.from({length: 12}).map((_,i)=><div key={i} className={`home__header__logo__${i + 1}`}>R</div>)}
         </div>
       </header>
       <section className="home__section">

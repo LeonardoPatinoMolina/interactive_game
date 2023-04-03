@@ -53,20 +53,25 @@
       height: 100%;
       position: relative;
       flex-grow: 1;
+      font-family: g.$primaryfont;
       perspective: 1000px;
       animation: rotation 2.5s ease-in-out alternate;
       animation-iteration-count: infinite;
       transform-style: preserve-3d;
       user-select: none;
+      font-size: 8em;
+
+      &:last-child{
+        animation-delay: 2.5s;
+      }
       
       @include u.breakpoint('medium'){
         grid-row: 1/2;
       }
-
-      &:first-child{
-        animation-delay: 2.5s;
+      @include u.breakpoint-down('small'){
+        font-size: 6rem;
       }
-      
+
       &.open>*{
         grid-column: 1/2;
         -webkit-text-stroke: 2px #83ffbb;
@@ -90,7 +95,6 @@
         color: #f1f1f1;
         @include g.mix-flex-aligment(center);
         transform: translateZ(#{$i} + px) ;
-        font-size: 8em;
       }
     }//end for
   }//end logo
@@ -105,7 +109,6 @@
       text-align: center;
       color: #0008;
       backdrop-filter: saturate(130%);
-      // box-shadow: inset 0 0 10px 0 #32325d40;
       outline: 1px solid #0003;
       border-radius: 10px;
       padding: 10px;
@@ -170,6 +173,6 @@
     transform: rotateY(0deg) rotateX(0deg);
   }
   to{
-    transform: rotateY(-180deg) rotateX(25deg);
+    transform: rotateY(-180deg);
   }
 }
