@@ -24,7 +24,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       {loot.isOpen && (
-        <div className="modal_wrapper" onClick={confirmM}>
+        <div className="modal_wrapper">
           <div className="modal">
             <h2>{title}</h2>
             {children && <div className="modal__body">{children}</div>}
@@ -32,9 +32,8 @@ export const Modal: React.FC<ModalProps> = ({
               {options.map((o, i) => (
                 <li
                   key={i}
-                  onClick={confirmM}
+                  onClick={()=>confirmM(o.choice)}
                   className="modal__options__item"
-                  data-choice={o.choice}
                 >
                   {o.content}
                 </li>

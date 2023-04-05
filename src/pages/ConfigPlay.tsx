@@ -39,9 +39,12 @@ const ConfigPlay: React.FC<ConfigPLayProps> = () => {
     } else if (name === "difficulty") {
       choice = await modalDifficulty.open();
     }
+    
     if (choice) {
+      console.log(name, choice);
       setForm((prev) => ({ ...prev, [name as string]: choice }));
     }
+    
   };
 
   const handleArrows = (e: React.MouseEvent<HTMLElement>) => {

@@ -45,7 +45,7 @@ export const useModal = (initialConfig: LootType): useModalReturns => {
      */
     return new Promise((resolve) => {
       controller.on('modal-action', (evnt: CustomEvent)=>{
-        resolve(evnt.detail && "")
+        resolve(evnt.detail ?? "")
       })
     });
   }
@@ -55,12 +55,8 @@ export const useModal = (initialConfig: LootType): useModalReturns => {
    * en este caso se trata de la elección que deviene desde un dataset en un elemento 
    * que ejecuta la función en su evento click
    */
-  function confirmM(event: React.MouseEvent<HTMLElement>): void {
+  function confirmM(choice: any): void {
     setLoot({...loot, isOpen: false});//cerramos el modal
-    let choice;
-    if(!event.currentTarget.dataset?.choice) choice = undefined;
-    else choice = event.currentTarget.dataset.choice;
-    //emitimos el evento a travéz del controlador con la elección como dato de interés
     controller.emit<any>('modal-action',choice);
   }
   //la responsabilidad de implementar la función showM está a manos del compoentne donde se 

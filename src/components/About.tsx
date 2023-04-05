@@ -11,7 +11,7 @@ const About: React.FC = () => {
           <img
             id="html_logo"
             className="about__list__item__logo"
-            src="src/assets/react.svg"
+            src="react.svg"
             alt="react.js logo"
             />
           </li>
@@ -20,7 +20,7 @@ const About: React.FC = () => {
             <img
             id="css_logo"
             className="about__list__item__logo"
-            src="src/assets/scss.svg"
+            src="scss.svg"
             alt="scss logo"
           />
         </li>
@@ -29,7 +29,7 @@ const About: React.FC = () => {
           <img
             id="ts_logo"
             className="about__list__item__logo"
-            src="src/assets/typescript.svg"
+            src="typescript.svg"
             alt="Typescript logo"
           />
         </li>
