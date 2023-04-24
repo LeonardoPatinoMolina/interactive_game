@@ -141,11 +141,11 @@ const Instructions = () => {
       </div>
 
       <p className="instructions__paragraph">
-        puedes elegir una de ellas simplemente dando click/touch sobre la sona que corresponda. Esto hará que pases a la siguiente pregunta
+        puedes elegir una de ellas simplemente dando click/touch sobre la zona que corresponda. Esto hará que pases a la siguiente pregunta
       </p>
 
       <p className="instructions__paragraph">
-        Si por desgracia te ves vencido por el reto puedes elegir rendirte con
+        Si por desgracia te ves vencido por el reto puedes elegir saltar pregunta con
         la opción: <em>me rindo</em>.
       </p>
       <div className="instructions__grafic3">
